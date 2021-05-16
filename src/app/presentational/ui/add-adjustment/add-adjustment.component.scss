@@ -1,0 +1,122 @@
+@import "../../../shared/sass/main.scss";
+
+.allocation-card {
+  padding-bottom: 5rem;
+  background-color: whitesmoke;
+  height: 80%;
+
+  .top-portion {
+    margin-bottom: 2rem;
+    @include center;
+
+    .unallocated__tabbox {
+      @include center;
+      display: block;
+      margin-top: 3rem;
+      width: 20rem;
+
+      &-heading {
+        @include center;
+        margin-top: 3rem;
+        font-size: calc(#{$standard-font}* 1.1);
+        color: black;
+        font-weight: 300;
+      }
+      &-money {
+        display: flex;
+        justify-content: space-around;
+        font-size: calc(#{$standard-font}* 1.1);
+        color: rgb(92, 85, 85);
+        margin-bottom: 1.5rem;
+        margin-top: 1rem;
+      }
+    }
+
+    .allocated_envs {
+      @include center;
+      margin: 1rem auto;
+      height: auto;
+      color: black;
+
+      ul {
+        list-style-type: none;
+      }
+
+      &__item {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      // color: #000000;
+    }
+  }
+
+  .allocation {
+    display: block;
+    padding-top: 2rem;
+
+    &-heading {
+      @include center;
+
+      font-size: calc(#{$standard-font}* 1.1);
+      color: black;
+      font-weight: 300;
+    }
+    .allocation-ui {
+      @include center;
+      &__money {
+        @include center;
+        font-size: calc(#{$standard-font}* 1.5);
+        // margin-left: 2rem;
+      }
+
+      &__incrementor {
+        display: flex;
+        justify-content: center;
+
+        &__form-group {
+          @include center;
+
+          mat-icon {
+            font-size: 2rem;
+            margin: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include tabs;
+@include mat-forms;
+
+.mat-divider {
+  background-color: rgba($color: #000000, $alpha: 0.1);
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.allocation {
+  display: flex;
+  justify-content: space-around;
+
+  &-heading {
+    font-size: $secondary-heading;
+    color: black;
+    margin: 2rem 0;
+    line-height: 2rem;
+
+    &__money {
+      font-size: calc(#{$standard-font}* 1.5);
+      margin: 2rem 0;
+    }
+  }
+}
+
+.mat-tab-group {
+  height: 50%;
+}

@@ -1,0 +1,34 @@
+<header>
+    <div class="header">
+        <div class="header__row">
+            <div class="column__block">
+                <app-shared-button 
+                    [type]="'regular'" 
+                    [content]="''" 
+                    [size]="'reg'"
+                    (clicked)="launchSettings()"
+                    ><mat-icon>paid</mat-icon>
+                </app-shared-button>
+                <app-shared-button 
+                    [type]="'regular'" 
+                    [content]="''" 
+                    [size]="'reg'"
+                    (clicked)="resetLevels()"
+                    ><mat-icon>restart_alt</mat-icon>
+            </app-shared-button>
+                <!-- <app-shared-button [type]="'regular'" [content]="''" [size]="'reg'"><mat-icon>analytics</mat-icon></app-shared-button> -->
+        
+            </div>
+            <div class="column__income">
+                <div class="column__income__heading">
+                    <img src="../../../assets/pig.png" alt="pig icon" [style.width.rem]="1.2">
+                     {{income.unallocated | currency:'USD'}}
+                </div>
+                <div class="column__income__heading">
+                    <img src="../../../assets/email.png" alt="letter icon" [style.width.rem]="1.2">
+                     {{income.allocated | currency:'USD'}}
+                </div>
+            </div>
+        </div>
+    </div>
+</header> 

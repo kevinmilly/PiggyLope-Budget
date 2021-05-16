@@ -1,0 +1,36 @@
+
+<ng-container *ngIf="income$ | async as income">
+    <ng-container *ngIf="envelope$ | async as envelopes">
+        <app-header [income]="income[0] || 0" [envs]="envelopes"></app-header>
+        <div class="envelope-container">
+            <ng-container *ngFor="let env of envelopes">
+                <app-envelope [envelope]="env">
+                    <app-shared-button  
+                        class="add-allocation" 
+                        [type]="'icon'" 
+                        [content]="'request_quote'"
+                        [size]="'small'"
+                        (clicked)="adjustAllocation(env,envelopes,income[0])"
+                    ></app-shared-button>
+                    <app-shared-button 
+                        class="add-transaction" 
+                        [type]="'icon'" 
+                        [content]="'add_shopping_cart'"
+                        [size]="'small'"
+                        (clicked)="addTransactionRemoveAllocation(env)"
+                    ></app-shared-button>
+                    <app-shared-button 
+                        class="delete-envelope" 
+                        [type]="'icon'" 
+                        [content]="'unsubscribe'"
+                        [size]="'small'"
+                        (clicked)="deleteEnvelope(income[0], env)"
+                        ></app-shared-button>
+                </app-envelope>
+            </ng-container>
+            <button class="envelope-button" mat-icon-button (click)="addEnvelope()">
+                <mat-icon>mail_outline</mat-icon>
+            </button>
+        </div>
+    </ng-container>
+</ng-container>

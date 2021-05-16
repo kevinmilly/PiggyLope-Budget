@@ -1,0 +1,19 @@
+<mat-card class="allocation-card">
+    <mat-card-header>
+        <div class="allocation-card__heading">New Envelope</div>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="addEnvelopeForm" class="allocation-card__form-group">
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input type="text" matInput formControlName="envelopeName">
+            </mat-form-field>
+           
+
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="primary" (click)="submit()">OK</button>
+      <button mat-button color="warn" (click)="cancel()">CANCEL</button>
+    </mat-card-actions>
+  </mat-card>

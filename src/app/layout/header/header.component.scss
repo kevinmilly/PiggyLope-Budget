@@ -1,0 +1,29 @@
+@import "../../shared/sass/main.scss";
+
+.header {
+  margin-bottom: $header-bottom-margin;
+  padding: 0;
+  height: $header-height;
+  background-color: $header-background-color;
+  color: black;
+
+  &__row {
+    @include main-row-spacing;
+
+    .column__block {
+      @include inline-columns;
+    }
+
+    .column__income {
+      @include block-columns;
+      margin-right: 10rem;
+
+      &__heading {
+        font-size: $secondary-heading;
+        margin: $income-heading-margin;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+

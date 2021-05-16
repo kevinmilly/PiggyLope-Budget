@@ -1,0 +1,31 @@
+@import "../../shared/sass/main.scss";
+
+.envelope-container {
+  @include envelope-container-spacing;
+  position: relative;
+  max-width: $envelope-container-width;
+  margin: auto;
+  margin-bottom: 6rem;
+}
+
+.add-envelope-container {
+  float: right;
+}
+
+.envelope-button {
+  opacity: 0.2;
+  margin-top: 4rem;
+  .mat-icon {
+    font-size: 12rem;
+    opacity: 0.2;
+    color: $card-font-color;
+  }
+}
+.dialog-box {
+  background-color: whitesmoke !important;
+  padding: auto;
+  .mat-dialog-actions {
+    margin-bottom: 0 !important;
+    padding: 2rem 3rem;
+  }
+}

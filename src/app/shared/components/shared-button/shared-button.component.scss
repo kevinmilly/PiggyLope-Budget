@@ -1,0 +1,13 @@
+@import "../../sass/main.scss";
+
+.reg {
+  @include reg-button;
+}
+
+.small {
+  @include small-button;
+}
+
+.big {
+  @include big-button;
+}

@@ -1,0 +1,30 @@
+@import "../../../shared/sass/main.scss";
+
+.allocation-card {
+  padding-bottom: 5rem;
+  background-color: whitesmoke;
+  height: auto;
+
+  display: block;
+
+  &__heading {
+    @include center;
+    margin-bottom: 3rem;
+    font-size: calc(#{$standard-font}* 1.1);
+    color: black;
+    font-weight: 300;
+  }
+
+  &__form-group {
+    display: block;
+    margin-top: 2rem;
+  }
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+@include mat-forms;

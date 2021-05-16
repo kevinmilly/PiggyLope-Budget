@@ -1,0 +1,92 @@
+<mat-card *ngIf="data" class="allocation-card">
+
+  <mat-card-content>
+    <div class="top-portion">
+      <mat-tab-group>
+        <mat-tab label="From Piggy">  
+          <div class="unallocated__tabbox">
+            <div class="unallocated__tabbox-heading">
+              Piggy Balance
+             </div>
+            <div class="unallocated__tabbox-money">
+                {{incomeToReturn.unallocated | currency:'USD'}}
+            </div> 
+            <div class="allocation-ui__incrementor">
+              <mat-icon 
+                  color="primary"
+                (click)="addFromAllocation()"
+                  *ngIf="incomeToReturn.unallocated > 0"
+                  >
+                  remove_circle_outline
+              </mat-icon>
+                  <form [formGroup]="piggyBalanceForm" class="allocation-ui__incrementor__form-group">
+                    <mat-form-field>
+                        <mat-label>Amount to Allocate</mat-label>
+                        <input 
+                          type="number" 
+                          matInput 
+                          name="pigncome" 
+                          formControlName="pigincome" 
+                          />
+                    </mat-form-field>
+                </form>
+                <mat-icon 
+                color="accent" 
+                (click)="subtractFromAllocation()"
+                *ngIf="incomeToReturn.unallocated !== originalIncomeBalance"
+                >add_circle_outline</mat-icon>
+          </div>
+        
+          </div>
+        </mat-tab>
+        <mat-tab label="From Envelopes">
+          <div class="allocated_envs">
+            <ul *ngIf="currentEnvelopes.length > 0; else singleenv">
+              <li *ngFor="let env of currentEnvelopes" >
+                <div class="allocated__envs__item"[style.color]="env.balance > 0 ? 'black' : 'gray'">
+                  {{env.name}} {{env.balance | currency:'USD'}}      
+                  <mat-icon 
+                     color="primary"
+                    (click)="addFromOtherEnvelope(env)"
+                    *ngIf="env.balance > 0"
+                    >
+                    remove_circle_outline
+                  </mat-icon>
+                  <mat-icon 
+                    color="accent"
+                    (click)="addToOtherEnvelope(env)"
+                    *ngIf="selectedEnv.balance !== originalSelectedEnvelopeBalance"
+                
+                  >add_circle_outline</mat-icon>
+                </div>
+              </li>
+            </ul>
+            <ng-template #singleenv>You only have 1 envelope.</ng-template>
+        
+          </div>
+        </mat-tab>
+    </mat-tab-group>
+    </div>
+  
+    <mat-divider></mat-divider>
+   <div class="allocation">
+        <div class="allocation-heading">
+         {{selectedEnv.name}} Balance
+        </div>
+        <div class="allocation-ui">
+            <div 
+              [style.color]="selectedEnv.balance < 50 ? 'red' : 'green'"
+              class="allocation-ui__money"
+            > 
+            {{selectedEnv.balance | currency:'USD'}}
+          </div>
+
+        </div>
+        
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="primary" (click)="submit()">OK</button>
+    <button mat-button color="warn" (click)="cancel()">CANCEL</button>
+  </mat-card-actions>
+</mat-card>
