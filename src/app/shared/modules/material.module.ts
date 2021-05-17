@@ -13,38 +13,28 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+const modules = [
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSnackBarModule, 
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTabsModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FlexLayoutModule
+]
+
 @NgModule({
     declarations:[],
-    imports:[
-        MatTableModule,
-        MatPaginatorModule,
-        MatSortModule,
-        MatSnackBarModule, 
-        MatCardModule,
-        MatIconModule,
-        MatButtonModule,
-        MatTabsModule,
-        MatDialogModule,
-        MatDividerModule,
-        MatFormFieldModule,
-        MatInputModule
-
-    ],
-    exports:[
-        MatTableModule,
-        MatPaginatorModule,
-        MatSortModule,
-        MatSnackBarModule, 
-        MatCardModule,
-        MatIconModule,
-        MatButtonModule,
-        MatTabsModule,
-        MatDialogModule,
-        MatDividerModule,
-        MatFormFieldModule,
-        MatInputModule
-   
-    ]
+    imports:[ modules ],
+    exports:[ modules ]
 })
 export class MaterialModule {
     

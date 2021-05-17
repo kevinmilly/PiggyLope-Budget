@@ -2,7 +2,7 @@
 <ng-container *ngIf="income$ | async as income">
     <ng-container *ngIf="envelope$ | async as envelopes">
         <app-header [income]="income[0] || 0" [envs]="envelopes"></app-header>
-        <div class="envelope-container">
+        <div class="envelope-container" >
             <ng-container *ngFor="let env of envelopes">
                 <app-envelope [envelope]="env">
                     <app-shared-button  

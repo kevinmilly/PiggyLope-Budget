@@ -8,32 +8,43 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-login',
   template: `
-    <div class="splash-container">
-      <mat-card class="splash-container__card">
-
-        <ng-container *ngIf="user | async; else login">
-          You are Logged In. <br/> <br/>
+  <div class="splash-container">
+  <ng-container *ngIf="user | async; else login">
+      <mat-card class="splash-container__loggedout">
+          <app-main-container></app-main-container>
           <button mat-raised (click)="logout()"></button>
-        </ng-container>
-        <ng-template #login>
-            <div class="spash-container__card__form">
-              <mat-form-field>
-                <mat-label>Enter your Email to Login</mat-label>
-                <input 
-                  type="string" 
-                  matInput 
-                  name="email" 
-                  formControlName="email" 
-                  />
-              </mat-form-field> 
-              <button mat-raised [disabled]="emailSent" (click)="sendEmailLink(email.value)"></button>
-            </div>
-            <div class="splash-container__card__image">
-              <img src="../assets/piggybank.jpg" />
-            </div>
-          </ng-template>
       </mat-card>
+  </ng-container>
+  <ng-template #login>
+     <div class="splash-container__loggedin">
+          <div class="splash-container__loggedin__image">
+             <img src="../assets/piggybank.jpg" />
+          </div>
+          <div class="splash-container__loggedin__form">
+            <div class="splash-container__loggedin__form__title">
+              Enter Your Email to Sign Up
+            </div>
+              <mat-form-field>
+                  <mat-label>Email</mat-label>
+                  <input 
+                    type="email" 
+                    matInput 
+                    name="email" 
+                    [(ngModel)]="emailEntered" 
+                    />
+              </mat-form-field> 
+              <app-shared-button 
+                class="" 
+                [type]="'regular'" 
+                [content]="'Send Login'"
+                [size]="'big'"
+                (clicked)="sendEmailLink()"
+        ></app-shared-button>
+        <span *ngIf="emailSent" [style.color]="'blue'" >Email Sent!  Please Check Your Email to Login!</span>
+          </div>
     </div>
+    </ng-template>
+</div>
   `,
   styleUrls: ['./login.component.scss']
 })
@@ -42,7 +53,7 @@ export class LoginComponent implements OnInit {
   user: Observable<any>;
   emailSent = false;
   errorMessage:string = '';
-  email = new FormControl('', Validators.email);
+  emailEntered = '';
 
   apiUrl = environment.apiUrl;
 
@@ -50,7 +61,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.afAuth.authState;
-
+    console.dir(this.user);
     const url = this.router.url;
 
     this.confirmSignIn(url);
@@ -59,16 +70,16 @@ export class LoginComponent implements OnInit {
 
   async sendEmailLink() {
     const actionCodeSettings = {
-      url: this.apiUrl,
+      url: `${this.apiUrl}/envelopes`,
       handleCodeInApp:true
     };
 
     try {
       await this.afAuth.sendSignInLinkToEmail(
-        this.email.value, 
+        this.emailEntered, 
         actionCodeSettings
       );
-      window.localStorage.setItem('emailForSignIn', this.email.value);
+      window.localStorage.setItem('emailForSignIn', this.emailEntered);
       this.emailSent = true;
     } catch (error) {
         this.errorMessage = error.message;
@@ -92,6 +103,10 @@ export class LoginComponent implements OnInit {
     } catch (error) {
         this.errorMessage = error.message;  
     }
+  }
+
+  async logout() {
+    await this.afAuth.signOut();
   }
 
 }
