@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ContainerModule } from './containers/container.module';
-import { MainContainerComponent } from './containers/main-container/main-container.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './core/containers/login/login.component';
+import { MainContainerComponent } from './core/containers/main-container/main-container.component';
+
 
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'envelopes', component: MainContainerComponent}
+  { path: '',  loadChildren:() => import('./core/core.module').then(m => m.CoreModule), pathMatch: 'full'},
+  {path: 'main',  component:MainContainerComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), ContainerModule],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { Observable } from 'rxjs';
@@ -8,9 +8,9 @@ import { AddEnvelopeComponent } from 'src/app/presentational/ui/add-envelope/add
 import { AddTransactionComponent } from 'src/app/presentational/ui/add-transaction/add-transaction.component';
 import { ReportTransaction } from 'src/app/shared/models/report-transaction.model';
 import { BackendService } from 'src/app/shared/services/backend.service';
-import { EnvelopeBudget } from '../../shared/models/envelope-budget.model';
-import { IncomeBalance } from '../../shared/models/income-balance.model';
-import { BudgetService } from '../../shared/services/budget.service';
+import { EnvelopeBudget } from '../../../shared/models/envelope-budget.model';
+import { IncomeBalance } from '../../../shared/models/income-balance.model';
+import { BudgetService } from '../../../shared/services/budget.service';
 
 
 @Component({
@@ -23,6 +23,8 @@ export class MainContainerComponent implements OnInit {
   envelope$:Observable<EnvelopeBudget[]>;
   income$: Observable<IncomeBalance[]>;
   transactions$: Observable<ReportTransaction[]>;
+
+  @Input() user;
 
  
 
@@ -39,6 +41,7 @@ export class MainContainerComponent implements OnInit {
       this.envelope$ = this.backendService.getEnvelopes();
       this.income$ = this.backendService.getIncomeBalance();
       this.transactions$ = this.backendService.getTransactions();
+      console.log("in main");
   }
 
   deleteEnvelope(income, env) {

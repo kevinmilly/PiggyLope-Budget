@@ -1,5 +1,6 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { SettingsComponent } from 'src/app/presentational/ui/settings/settings.component';
 import { EnvelopeBudget } from 'src/app/shared/models/envelope-budget.model';
 import { IncomeBalance } from 'src/app/shared/models/income-balance.model';
@@ -19,7 +20,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private backendService:BackendService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private auth:AuthService
   ) { }
 
   ngOnInit(): void {
@@ -48,5 +50,7 @@ export class HeaderComponent implements OnInit {
       this.backendService.resetEnvelopeandAllocation(this.envs,this.income);
     }
   }
+
+  logout() { this.auth.logout()}
 
 }

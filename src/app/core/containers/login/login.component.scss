@@ -1,11 +1,11 @@
-@import "../shared/sass/main.scss";
+@import "../../../shared/sass/main.scss";
 
 .splash-container {
     display: flex;
     justify-content: center;
     width: 100%;
 
-    &__loggedin
+    &__loggedOut
      {
         padding: 1rem;
          display: block;
@@ -27,6 +27,8 @@
                 width: 100%;
                 font-size: 1rem;
              }
+
+        
         }
 
         &__image {
@@ -42,3 +44,12 @@
 }
  
 @include  big-mat-forms;
+
+.email-sent {
+    margin-top: .7rem;
+    font-size: 1rem;
+    background-color: rgb(240, 192, 208);
+    padding: 1rem;
+    text-align: center;
+    font-weight: 500;
+}
