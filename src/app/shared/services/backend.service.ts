@@ -9,11 +9,12 @@ import { ReportTransaction } from '../models/report-transaction.model';
 import { Settings } from '../models/settings.model';
 // import { testData, income } from '../services/test-data';
 import { UserInfo } from '../../shared/models/userInfo.model';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BackendService implements OnInit {
+export class BackendService {
 
   user:UserInfo;
 
@@ -30,11 +31,10 @@ export class BackendService implements OnInit {
       this.income$ = this.getIncomeBalance();
       this.transactions$ = this.getTransactions();
       
+
     })
    }
 
-   ngOnInit() {
-   }
 
 
 
@@ -80,7 +80,22 @@ export class BackendService implements OnInit {
 
   updateIncomeBalance(incomeBalance) {
     this.firestore.collection<IncomeBalance>(`user/${this.user.uid}/incomeBalance/`)
-        .doc(incomeBalance.id).update(Object.assign({}, incomeBalance));
+        .doc(incomeBalance.id)
+        .get()
+        .pipe(take(1))
+        .subscribe( incomeRecord => {
+          if(incomeRecord.exists) {
+            this.firestore.collection<IncomeBalance>(`user/${this.user.uid}/incomeBalance/`)
+            .doc(incomeBalance.id)
+              .update(Object.assign({}, incomeBalance));
+          } else {
+              this.firestore.collection<IncomeBalance>(`user/${this.user.uid}/incomeBalance/`)
+              .doc(incomeBalance.id)
+              .set(Object.assign({}, incomeBalance), {merge: true});
+          }
+        })
+    
+
 
   }
 

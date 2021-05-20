@@ -20,7 +20,7 @@ export class SettingsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.income = this.data;
+    this.income = this.data ? this.data : new IncomeBalance(null, 0,0);
     this.settingsForm = new FormGroup({
       income: new FormControl(this.income.unallocated, Validators.min(10))
     })
