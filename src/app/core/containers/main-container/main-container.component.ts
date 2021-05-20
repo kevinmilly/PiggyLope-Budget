@@ -11,6 +11,7 @@ import { BackendService } from 'src/app/shared/services/backend.service';
 import { EnvelopeBudget } from '../../../shared/models/envelope-budget.model';
 import { IncomeBalance } from '../../../shared/models/income-balance.model';
 import { BudgetService } from '../../../shared/services/budget.service';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -20,7 +21,6 @@ import { BudgetService } from '../../../shared/services/budget.service';
 })
 export class MainContainerComponent implements OnInit {
 
-  envelope$:Observable<EnvelopeBudget[]>;
   income$: Observable<IncomeBalance[]>;
   transactions$: Observable<ReportTransaction[]>;
 
@@ -30,18 +30,16 @@ export class MainContainerComponent implements OnInit {
 
   constructor(
     private budgetService:BudgetService, 
-    private backendService:BackendService,
-    public dialog: MatDialog
+    public backendService:BackendService,
+    public dialog: MatDialog,
+    private authService:AuthService
     ) {
 
   }
 
 
   ngOnInit() {
-      this.envelope$ = this.backendService.getEnvelopes();
-      this.income$ = this.backendService.getIncomeBalance();
-      this.transactions$ = this.backendService.getTransactions();
-      console.log("in main");
+      
   }
 
   deleteEnvelope(income, env) {
@@ -61,7 +59,7 @@ export class MainContainerComponent implements OnInit {
       // panelClass: 'dialog-box',
       data: {
         envelope: env,
-        transactions:this.transactions$
+        transactions:this.backendService.getTransactions()
       }
     });
 
