@@ -56,8 +56,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="readme-assets/screenshot.JPG" alt="screenshot">
-
 There are many envelope budgeting systems, digital and physical, that can help you get a handle on your finances.  The tactile nature of physical systems (using cash and actual labeled envelopes), really lends itself to increasing intentionality with spending money.  Literally taking money out of a 'savings'/envelope seems to help accountability.
 
 However, personally, I identified some challenges:
@@ -68,6 +66,8 @@ However, personally, I identified some challenges:
 * Was there a way to see performance metrics at a glance?
 
 This project is an attempt to address these opportunities, to adapt the system for the above scenarios.
+
+<img src="readme-assets/screenshot.JPG" alt="screenshot">
 
 #### Creating Envelopes and reflecting purchases
 
