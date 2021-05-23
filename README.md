@@ -4,7 +4,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/kevinmilly/PiggyLope-Budget">
-    <img src="readme-assets/piggybank.jpg" alt="Logo" width="200" height="200">
+    <img src="readme-assets/piggy-bank-logo.jpg" alt="Logo" width="200" height="200">
   </a>
 
   <h3 align="center">PiggyLope Budget</h3>
@@ -56,7 +56,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="readme-assets/screenshot.jpg" alt="screenshot">
+<img src="readme-assets/screenshot.JPG" alt="screenshot">
 
 There are many envelope budgeting systems, digital and physical, that can help you get a handle on your finances.  The tactile nature of physical systems (using cash and actual labeled envelopes), really lends itself to increasing intentionality with spending money.  Literally taking money out of a 'savings'/envelope seems to help accountability.
 
