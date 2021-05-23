@@ -15,7 +15,7 @@
     <a href="https://github.com/kevinmilly/PiggyLope-Budget"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="readme-assets/nextaskdemo.gif">View Demo</a>
+    <!-- <a href="readme-assets/">View Demo</a> -->
     ·
     <a href="https://github.com/kevinmilly/PiggyLope-Budget/issues">Report Bug</a>
     ·
@@ -64,27 +64,34 @@ However, personally, I identified some challenges:
 
 * One challenge was the mobility of such a system; in many cases, it wasn't the most agile setup.
 * Unless you kept a written balance on the envelope, you couldn't see how much you had left without opening the envelope.
+* Was there a way to account for instances where I wasn't using cash?
 * Was there a way to see performance metrics at a glance?
 
+This project is an attempt to address these opportunities, to adapt the system for the above scenarios.
 
-<img src="" alt="task-choice">
+#### Creating Envelopes and reflecting purchases
+
+By creating using an web app to mirror the envelope system, you can take advantage of the natural mobility of smartphones, tablets, or laptops.  You can create as many envelopes as you want, reflecting the amount of money you want to allocate towards each through an easy to use interface.  Whenever you want to make a purchase from an envelope/spending category, you can reflect the spending through an equally simple UI; decrementing the balance.  This accounting of the purchase in the app can happen before or after you make the actual purchase; the key is to reflect the spending in the app so you can track what you did.  Deliberately, putting it in the app mirrors the accountability offered from the traditional, physical setup. 
+
+Once your balance reaches zero, you will no longer be able to spend from that category/envelope; until you replenish the envelope from your 'bank' balance or take from other envelopes.
+
+The balance of each envelope is plainly shown on the front of the envelope card.  For an attractive visual indicator, the color of the balance changes as it lowers to zero.
+
+#### Regular Budgeting
+
+Day to day, week to week, month to month etc.  Whenever you are complete with your budgeting cycle, you can 'reset the envelopes' and your bank will begin at the set balance, and clearing the envelopes.  There is an existing issue for a feature that allows you the app to memorize the envelope balances of the previous cycle; however, currently a user will need to setup the balances for the envelopes again.  From cycle to cycle, as spending habits are discovered, it is likely there would be changes to envelope allocations anyways.  Nevertheless, it's clear that at least starting from a previous balance would be helpful. 
 
 
+#### That's IT!
 
-<img src="" alt="goal-based-entry">
-
-
-#### Metrics
-
+The point of the system is to be simple, but promote a small level of involvement by the spender.
 
 <!-- ROADMAP -->
 ## Roadmap
 
-*It would be great to further flesh out the 'Metrics' section, certaintly additonal information can be extracted from the data to benefit our productivity.
+*It would be great to further flesh out the 'Metrics' section, certaintly additonal information can be extracted from the data to benefit proactive budgeting. 
 
 *General UX is an ongoing project.
-
-
 
 See the [open issues](https://github.com/kevinmilly/PiggyLope-Budget/issues) for a list of proposed features (and known issues).
 
@@ -96,7 +103,7 @@ See the [open issues](https://github.com/kevinmilly/PiggyLope-Budget/issues) for
 
 ### End User Setup
 
-1. Visit the app at,
+1. Visit the app at, http://envelope-budget-55b22.web.app/
 2. Sign in with Google
 3. Get to work!
 
@@ -113,7 +120,7 @@ See the [open issues](https://github.com/kevinmilly/PiggyLope-Budget/issues) for
 
 ### Built With
 
-* [Ionic Framework - Angular](https://ionicframework.com/docs/angular/your-first-app)
+* [Angular](https://ionicframework.com/docs/angular/your-first-app)
 * [Firebase](https://firebase.google.com/)
 
 
