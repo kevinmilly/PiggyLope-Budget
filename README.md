@@ -4,7 +4,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/kevinmilly/PiggyLope-Budget">
-    <img src="readme-assets/piggy-bank-logo.jpg" alt="Logo" width="200" height="200">
+    <img src="readme-assets/piggy-bank-logo.png" alt="Logo" width="200" height="200">
   </a>
 
   <h3 align="center">PiggyLope Budget</h3>

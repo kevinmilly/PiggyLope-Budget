@@ -6,6 +6,7 @@
   height: $header-height;
   background-color: $header-background-color;
   color: black;
+  width: auto;
 
   &__row {
     @include main-row-spacing;
@@ -16,7 +17,7 @@
 
     .column__income {
       @include block-columns;
-      margin-right: 10rem;
+      margin-right: 3rem;
 
       &__heading {
         font-size: $secondary-heading;

@@ -1,13 +1,13 @@
 <header>
     <div class="header">
         <div class="header__row">
-            <div class="column__block">
+            <div class="column__block" fxHide.sm fxHide.xs>
                 <app-shared-button 
                     [type]="'regular'" 
                     [content]="''" 
                     [size]="'reg'"
                     (clicked)="launchSettings()"
-                    ><mat-icon>paid</mat-icon>
+                    ><mat-icon>savings</mat-icon>
                 </app-shared-button>
                 <app-shared-button 
                     [type]="'regular'" 
@@ -25,6 +25,46 @@
               </app-shared-button>
                 <!-- <app-shared-button [type]="'regular'" [content]="''" [size]="'reg'"><mat-icon>analytics</mat-icon></app-shared-button> -->
         
+            </div>
+            <div class="" fxShow.md fxShow.sm fxHide.lg fxHide.xl> 
+                  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Additional options">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button 
+                        mat-menu-item
+                        (click)="launchSettings()"
+                    >
+                      <mat-icon>savings</mat-icon>
+                      <span>Set Funds</span>
+                    </button>
+                    <button mat-menu-item [matMenuTriggerFor]="restart_options">
+                      <mat-icon>restart_alt</mat-icon>
+                      <span>Reset Funds</span>
+                    </button>
+                    <button 
+                        mat-menu-item
+                        (click)="logout()"
+                    >
+                      <mat-icon>logout</mat-icon>
+                      <span>Logout</span>
+                    </button>
+                  </mat-menu>
+
+                  <mat-menu #restart_options="matMenu">
+                    <button 
+                        mat-menu-item>
+                        <mat-icon>restore</mat-icon>
+                       <span>Memory</span>
+                    </button>
+                    <button 
+                        (click)="resetLevels()"
+                        mat-menu-item
+                    >
+                        <mat-icon>delete_outline</mat-icon>
+                        <span>Clear All</span>
+                    </button>
+                  </mat-menu>
             </div>
             <div class="column__income">
                 <div class="column__income__heading">
