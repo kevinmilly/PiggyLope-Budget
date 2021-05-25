@@ -14,6 +14,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
+import {MatMenuModule} from '@angular/material/menu';
 
 const modules = [
     MatTableModule,
@@ -28,7 +31,9 @@ const modules = [
     MatDividerModule,
     MatFormFieldModule,
     MatInputModule,
-    FlexLayoutModule
+    MatSidenavModule,
+    FlexLayoutModule,
+    MatMenuModule
 ]
 
 @NgModule({

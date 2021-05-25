@@ -6,7 +6,7 @@
 @mixin envelope-container-spacing {
   display: flex;
   margin-top: 2rem;
-  justify-self: auto;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
