@@ -5,14 +5,14 @@ export class Settings {
     private _payDay:number[];
     private _payCheck:number;
     private _id:string;
-    private envelopeDefaults: {name:string, default:number}[];
+    private _envelopeDefaults: {name:string, amount:number}[];
 
 
     constructor(amount:number, id?) {
         this._payCheck = amount;
         this._payDay = [15,30];
         this._id = id;
-        this.envelopeDefaults = [];
+        this._envelopeDefaults = [{name:'', amount:0}];
     }
 
     public get payCheck() { 
@@ -27,12 +27,12 @@ export class Settings {
     public set payCheck(check) {this._payCheck = check;}
 
     public setDefault(name:string, amount:number) {
-        this.envelopeDefaults.find(e => e.name === name)
-            .default = amount;
+        this._envelopeDefaults.find(e => e.name === name)
+            .amount = amount;
     }
 
-    public getDefaults() {
-        return this.envelopeDefaults;
+    public get envelopeDefaults(): {name:string, amount:number}[] {
+        return this._envelopeDefaults;
     }
 
     public get id() {

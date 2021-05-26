@@ -3,11 +3,31 @@
         <div class="settings-card__heading">Settings</div>
     </mat-card-header> 
     <mat-card-content>
-        <form [formGroup]="settingsForm" class="settings-card__form-group">
+        <form [formGroup]="settingsForm" class="settings-card__form-group" (ngSubmit)="submit()">
             $ <mat-form-field>
                 <mat-label>Starting Income</mat-label>
                 <input type="number" matInput name="startingIncome" formControlName="income" />
             </mat-form-field>
+            <mat-form-field>
+                <mat-label>Pay Check</mat-label>
+                <input type="number" matInput name="paycheck" formControlName="paycheck" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Pay Day</mat-label>
+                <input type="number" matInput name="payday" formControlName="payday" />
+            </mat-form-field>
+            <div formArrayName="envelopeDefaults">
+                <div 
+                    *ngFor="let env of envelopeDefs.controls; index as i"
+                    class="settings-card__form-group__envDef">
+                    <mat-form-field>
+                        <mat-label>{{envelopeDefs[i].name}}</mat-label>
+                        <input type="number" matInput name="{{envelopeDefs[i].name}}" [formControlName]="i" />
+                    </mat-form-field>
+                 </div>
+            </div>
+            
+
         </form>
     </mat-card-content>
     <mat-card-actions>

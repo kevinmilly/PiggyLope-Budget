@@ -31,14 +31,23 @@ export class SettingsComponent implements OnInit {
           income: new FormControl(this.income.unallocated, Validators.min(10)),
           payCheck: new FormControl(settings[0].payCheck, Validators.min(10)),
           payDay: new FormControl(settings[0].payDay, Validators.min(10)),
-          envelopeDefaults: this.loadEnvDefaults(settings[0].getDefaults)
+          envelopeDefaults: this.loadEnvDefaults(settings[0].envelopeDefaults)
         })
       })
 
   }
 
-  loadEnvDefaults(envelopeDefaults):FormArray {
-    return;
+  loadEnvDefaults(envelopeDefaults:{name:string,amount:number}[]):FormArray {
+
+    const tempEnvDefaultsFormArray = new FormArray([]);
+    envelopeDefaults.forEach(env=> {
+      tempEnvDefaultsFormArray.push(new FormControl(env.amount, [Validators.min(0)]));
+    });
+    return tempEnvDefaultsFormArray as FormArray;
+  }
+
+  get envelopeDefs(): FormArray {
+    return this.settingsForm.get("envelopeDefaults") as FormArray;
   }
 
   submit() {
@@ -52,7 +61,7 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnDestroy() {
-
+    if(this.settingsSub) this.settingsSub.unsubscribe();
   }
 
 }
