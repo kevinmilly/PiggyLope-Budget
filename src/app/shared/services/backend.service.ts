@@ -21,6 +21,7 @@ export class BackendService {
   envelopes$;
   income$;
   transactions$;
+  settings$;
 
   constructor(private firestore:AngularFirestore, private auth:AuthService) {
     this.auth.user$
@@ -30,6 +31,7 @@ export class BackendService {
       this.envelopes$ = this.getEnvelopes();
       this.income$ = this.getIncomeBalance();
       this.transactions$ = this.getTransactions();
+      this.settings$ = this.getSettings();
       
 
     })
@@ -89,14 +91,37 @@ export class BackendService {
             .doc(incomeBalance.id)
               .update(Object.assign({}, incomeBalance));
           } else {
+             //create income
               this.firestore.collection<IncomeBalance>(`user/${this.user.uid}/incomeBalance/`)
               .doc(incomeBalance.id)
               .set(Object.assign({}, incomeBalance), {merge: true});
+
+
           }
         })
     
 
 
+  }
+
+  updateSettings(settings: Settings) {
+
+    this.firestore.collection<Settings>(`user/${this.user.uid}/settings/`)
+    .doc(settings.id)
+    .get()
+    .pipe(take(1))
+    .subscribe( settingsRecord => {
+      if(settingsRecord.exists) {
+        this.firestore.collection<Settings>(`user/${this.user.uid}/settings/`)
+        .doc(settings.id)
+          .update(Object.assign({}, settings));
+      } else {
+            //create settings
+          this.firestore.collection<Settings>(`user/${this.user.uid}/settings/`)
+          .doc(settings.id)
+          .set(Object.assign({}, settings), {merge: true});
+      }
+    })
   }
 
   deleteTransaction(transaction) {

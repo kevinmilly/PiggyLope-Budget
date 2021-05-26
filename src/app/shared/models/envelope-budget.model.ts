@@ -2,12 +2,14 @@ export class EnvelopeBudget {
 
     balance:number;
     name:string;
+    default:number;
     id:string;
 
     constructor(id?:string, balance?:number, name?:string) {
         this.balance = balance || 0;
         this.name = name;
         this.id = id || this.idGenerator();
+        this.default = balance;
     } 
 
     idGenerator() {
