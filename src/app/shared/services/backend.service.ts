@@ -21,7 +21,7 @@ export class BackendService {
   envelopes$;
   income$;
   transactions$;
-  settings$;
+  _settings;
 
   constructor(private firestore:AngularFirestore, private auth:AuthService) {
     this.auth.user$
@@ -31,7 +31,18 @@ export class BackendService {
       this.envelopes$ = this.getEnvelopes();
       this.income$ = this.getIncomeBalance();
       this.transactions$ = this.getTransactions();
-      this.settings$ = this.getSettings();
+      this.getSettings()
+          .subscribe(settings => {
+            //check if settings exists, if they don't then set them up
+            if(settings.length > 0) {
+              this._settings = settings[0];
+            } else {
+                this._settings = new Settings(0)
+                this.firestore.collection<Settings>(`user/${this.user.uid}/settings/`)
+                .doc(this._settings.id)
+                .set(Object.assign({}, this._settings), {merge: true});
+            }
+          }) 
       
 
     })
@@ -63,6 +74,7 @@ export class BackendService {
       .collection<EnvelopeBudget>(`user/${this.user.uid}/envelopes`)
       .doc(envelope.id)
       .set(Object.assign({}, envelope), {merge: true});
+     
   }
 
   addTransaction(transaction) {
@@ -78,6 +90,7 @@ export class BackendService {
     envelopes.forEach(envelope => {
       envelopeToUpdate.doc(envelope.id).update(Object.assign({}, envelope)); 
     });   
+    
   }s
 
   updateIncomeBalance(incomeBalance) {
@@ -104,24 +117,10 @@ export class BackendService {
 
   }
 
-  updateSettings(settings: Settings) {
-
+  updateSettings(settings: Settings) { 
     this.firestore.collection<Settings>(`user/${this.user.uid}/settings/`)
     .doc(settings.id)
-    .get()
-    .pipe(take(1))
-    .subscribe( settingsRecord => {
-      if(settingsRecord.exists) {
-        this.firestore.collection<Settings>(`user/${this.user.uid}/settings/`)
-        .doc(settings.id)
-          .update(Object.assign({}, settings));
-      } else {
-            //create settings
-          this.firestore.collection<Settings>(`user/${this.user.uid}/settings/`)
-          .doc(settings.id)
-          .set(Object.assign({}, settings), {merge: true});
-      }
-    })
+      .update(Object.assign({}, settings));
   }
 
   deleteTransaction(transaction) {
@@ -152,7 +151,7 @@ export class BackendService {
   }
 
 
-
+  get settings() { return this._settings}
 
 
 

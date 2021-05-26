@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { SettingsComponent } from 'src/app/presentational/ui/settings/settings.component';
 import { EnvelopeBudget } from 'src/app/shared/models/envelope-budget.model';
 import { IncomeBalance } from 'src/app/shared/models/income-balance.model';
+import { Settings } from 'src/app/shared/models/settings.model';
 import { BackendService } from 'src/app/shared/services/backend.service';
 import { income } from 'src/app/shared/services/test-data';
 
@@ -16,6 +17,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() income:IncomeBalance;
   @Input() envs:EnvelopeBudget[];
+  @Input() settings:Settings;
 
 
   constructor(
@@ -32,7 +34,12 @@ export class HeaderComponent implements OnInit {
     let dialogRef = this.dialog.open(SettingsComponent, {
       height: '30rem',
       width: '20rem',
-      data: this.income
+      data: {
+        income:this.income,
+        envelopes: this.envs,
+        settings: this.settings
+
+      }
     });
 
     dialogRef.afterClosed().subscribe(settings => {
