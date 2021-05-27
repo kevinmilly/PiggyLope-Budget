@@ -66,8 +66,19 @@ export class HeaderComponent implements OnInit {
   }
 
   resetLevels() {
-    if (confirm("Are you sure you want to reset everything?",)) {
+    if (confirm("Are you sure you want to clear EVERY balance?",)) {
       this.backendService.resetEnvelopeandAllocation(this.envs, this.income);
+    }
+  }
+
+  resetMemory() {
+    if (confirm("Are you sure you want to reset everything?",)) {
+      this.envs.forEach( env => env.balance = env.default);
+      this.income.unallocated = this.settings.payCheck;
+      this.income.allocated = 0;
+
+      this.backendService.updateIncomeBalance(this.income)
+      this.backendService.updateEnvelopes(this.envs);
     }
   }
 
