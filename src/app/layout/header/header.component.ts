@@ -33,8 +33,7 @@ export class HeaderComponent implements OnInit {
 
   launchSettings() {
     let dialogRef = this.dialog.open(SettingsComponent, {
-      height: '30rem',
-      width: '20rem',
+      width: '25rem',
       data: {
         income: this.income,
         envelopes: this.envs,

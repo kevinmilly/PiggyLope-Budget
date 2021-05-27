@@ -1,39 +1,67 @@
 @import "../../../shared/sass/main.scss";
 
-.allocation-card {
-  padding-bottom: 5rem;
-  background-color: whitesmoke;
-  height: 80%;
+@include tabs;
+@include mat-forms;
 
-  .top-portion {
+.allocation-card {
+  background-color: whitesmoke;
+  height: 94%;
+  width: auto;
+  // padding: auto;
+
+  &__top-portion {
     margin-bottom: 2rem;
-    @include center;
 
     .unallocated__tabbox {
-      @include center;
+      @include center-flex;
       display: block;
       margin-top: 3rem;
-      width: 20rem;
+      width: auto;
 
-      &-heading {
-        @include center;
+      &__heading {
+        display: inline;
         margin-top: 3rem;
-        font-size: calc(#{$standard-font}* 1.1);
-        color: black;
-        font-weight: 300;
+
+        &-title {
+          font-size: calc(#{$standard-font}* .9);
+          color: black;
+          font-weight: 300;
+        }
+
+        &-money {
+          // display: flex;
+          // justify-content: space-around;
+          font-size: calc(#{$standard-font}* .8);
+          color: rgb(92, 85, 85);
+          margin-bottom: 1.5rem;
+          margin-top: 1rem;
+        }
       }
-      &-money {
-        display: flex;
-        justify-content: space-around;
-        font-size: calc(#{$standard-font}* 1.1);
-        color: rgb(92, 85, 85);
-        margin-bottom: 1.5rem;
-        margin-top: 1rem;
+
+      &__allocation-ui {
+        @include center-flex;
+        margin-right: 1.5rem;
+
+        &__form-group {
+          padding-left: 5rem;
+          margin-top: 2rem;
+
+        }
+        &__incrementor {
+          display: flex;
+          justify-content: center;
+          margin-top: 2rem;
+          mat-icon {
+            font-size: 2rem;
+            margin: .5rem;
+          }
+        }
       }
+  
     }
 
-    .allocated_envs {
-      @include center;
+    &__allocated_envs {
+      @include center-flex;
       margin: 1rem auto;
       height: auto;
       color: black;
@@ -49,46 +77,41 @@
 
       // color: #000000;
     }
+   
   }
 
-  .allocation {
+
+  
+
+  &__bottom-portion {
     display: block;
     padding-top: 2rem;
+    width: 100%;
 
     &-heading {
-      @include center;
-
-      font-size: calc(#{$standard-font}* 1.1);
+      @include center-flex;
+      width: 100%;
+      font-size: calc(#{$standard-font}* .9);
       color: black;
       font-weight: 300;
+      line-height: 1.5rem;
     }
-    .allocation-ui {
-      @include center;
+    &-ui {
+      @include center-flex;
+
       &__money {
-        @include center;
-        font-size: calc(#{$standard-font}* 1.5);
-        // margin-left: 2rem;
+        // display: flex;
+        // justify-content: space-around;
+        font-size: calc(#{$standard-font}* .8);
+        color: rgb(92, 85, 85);
+        margin-bottom: 1.5rem;
+        margin-top: 1rem;
       }
 
-      &__incrementor {
-        display: flex;
-        justify-content: center;
-
-        &__form-group {
-          @include center;
-
-          mat-icon {
-            font-size: 2rem;
-            margin: 1rem;
-          }
-        }
-      }
     }
   }
 }
 
-@include tabs;
-@include mat-forms;
 
 .mat-divider {
   background-color: rgba($color: #000000, $alpha: 0.1);
@@ -100,23 +123,4 @@
   margin-top: 2rem;
 }
 
-.allocation {
-  display: flex;
-  justify-content: space-around;
 
-  &-heading {
-    font-size: $secondary-heading;
-    color: black;
-    margin: 2rem 0;
-    line-height: 2rem;
-
-    &__money {
-      font-size: calc(#{$standard-font}* 1.5);
-      margin: 2rem 0;
-    }
-  }
-}
-
-.mat-tab-group {
-  height: 50%;
-}

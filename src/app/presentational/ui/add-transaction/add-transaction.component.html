@@ -1,6 +1,4 @@
 <mat-card *ngIf="data" class="allocation-card">
-    <mat-tab-group>
-        <mat-tab label="New">
             <mat-card-header>
                 <div class="allocation-card__heading">New Transaction</div>
             </mat-card-header>
@@ -17,10 +15,12 @@
                             <input type="text" matInput name="category" formControlName="category" />
                         </mat-form-field>
                         <br/>
-                        <mat-form-field>
-                            <mat-label>How much?</mat-label>
-                            <input type="number" matInput name="amount" formControlName="amount" />
-                        </mat-form-field>
+                        <div class="allocation-card__form-group-small">
+                            <mat-form-field>
+                                <mat-label>How much?</mat-label>
+                                <input type="number" matInput name="amount" formControlName="amount" />
+                            </mat-form-field>
+                        </div>
                
                 </div>
             </mat-card-content>
@@ -28,26 +28,5 @@
               <button mat-button color="primary" (click)="submit()">OK</button>
               <button mat-button color="warn" (click)="cancel()">CANCEL</button>
             </mat-card-actions>
-        </mat-tab>
-        <mat-tab label="Past">
-            <mat-card-header>
-                <div class="allocation-card__heading">History</div>
-            </mat-card-header>
-            <mat-card-content>
-                <div class="allocation-card__transaction-list">
-                    <ul *ngIf = "trans$ | async as trans">
-                        <li *ngFor="let tran of trans">
-                            <div class="items">
-                                Date: {{tran._date}} <br/>
-                                Name: {{tran._name}}<br/>
-                                Expense Type: {{tran._type}}<br/>
-                                Amount: {{tran._balance | currency:'USD'}}
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </mat-card-content>
-        </mat-tab>
-    </mat-tab-group>
-   
+
   </mat-card>

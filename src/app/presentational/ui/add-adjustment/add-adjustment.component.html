@@ -1,27 +1,25 @@
 <mat-card *ngIf="data" class="allocation-card">
 
   <mat-card-content>
-    <div class="top-portion">
+    <div class="allocation-card__top-portion">
       <mat-tab-group>
         <mat-tab label="From Piggy">  
           <div class="unallocated__tabbox">
-            <div class="unallocated__tabbox-heading">
-              Piggy Balance
-             </div>
-            <div class="unallocated__tabbox-money">
-                {{incomeToReturn.unallocated | currency:'USD'}}
-            </div> 
-            <div class="allocation-ui__incrementor">
-              <mat-icon 
-                  color="primary"
-                (click)="addFromAllocation()"
-                  *ngIf="incomeToReturn.unallocated > 0"
+            <div class="unallocated__tabbox__heading">
+                <div class="unallocated__tabbox__heading-title">
+                  Piggy Balance
+                </div>
+                <div class="unallocated__tabbox__heading-money">
+                    {{incomeToReturn.unallocated | currency:'USD'}}
+                </div> 
+            </div>
+            <div class="unallocated__tabbox__allocation-ui">
+                  <form 
+                    [formGroup]="piggyBalanceForm" 
+                    class="unallocated__tabbox__allocation-ui__form-group"
                   >
-                  remove_circle_outline
-              </mat-icon>
-                  <form [formGroup]="piggyBalanceForm" class="allocation-ui__incrementor__form-group">
                     <mat-form-field>
-                        <mat-label>Amount to Allocate</mat-label>
+                        <mat-label>Allocation</mat-label>
                         <input 
                           type="number" 
                           matInput 
@@ -30,17 +28,28 @@
                           />
                     </mat-form-field>
                 </form>
-                <mat-icon 
-                color="accent" 
-                (click)="subtractFromAllocation()"
-                *ngIf="incomeToReturn.unallocated !== originalIncomeBalance"
-                >add_circle_outline</mat-icon>
+                <div class="unallocated__tabbox__allocation-ui__incrementor">
+                    <mat-icon 
+                      color="accent" 
+                      (click)="subtractFromAllocation()"
+                      *ngIf="incomeToReturn.unallocated !== originalIncomeBalance"
+                    >     
+                      add_circle_outline
+                     </mat-icon>
+                      <mat-icon 
+                        color="primary"
+                        (click)="addFromAllocation()"
+                        *ngIf="incomeToReturn.unallocated > 0"
+                      >
+                        remove_circle_outline
+                      </mat-icon>
+                </div>
           </div>
         
           </div>
         </mat-tab>
         <mat-tab label="From Envelopes">
-          <div class="allocated_envs">
+          <div class="allocation-card__top-portion__allocated_envs">
             <ul *ngIf="currentEnvelopes.length > 0; else singleenv">
               <li *ngFor="let env of currentEnvelopes" >
                 <div class="allocated__envs__item"[style.color]="env.balance > 0 ? 'black' : 'gray'">
@@ -69,14 +78,14 @@
     </div>
   
     <mat-divider></mat-divider>
-   <div class="allocation">
-        <div class="allocation-heading">
+   <div class="allocation-card__bottom-portion">
+        <div class="allocation-card__bottom-portion-heading">
          {{selectedEnv.name}} Balance
         </div>
-        <div class="allocation-ui">
+        <div class="allocation-card__bottom-portion-ui">
             <div 
               [style.color]="selectedEnv.balance < 50 ? 'red' : 'green'"
-              class="allocation-ui__money"
+              class="allocation-card__bottom-portion-ui__money"
             > 
             {{selectedEnv.balance | currency:'USD'}}
           </div>

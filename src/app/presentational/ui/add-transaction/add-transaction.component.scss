@@ -5,7 +5,6 @@
   line-height: 0.5rem;
   background-color: whitesmoke;
   height: auto;
-
   display: block;
 
   &__heading {
@@ -19,8 +18,13 @@
 
   &__form-group {
     @include center;
+    @include big-mat-forms;
     margin-top: 4rem;
     display: block;
+
+    &-small {
+      @include mat-forms;
+    }
   }
 
   &__transaction-list {
@@ -47,5 +51,4 @@
   margin-top: 4rem;
 }
 
-@include mat-forms;
 @include tabs;
