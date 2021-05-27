@@ -1,4 +1,4 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { SettingsComponent } from 'src/app/presentational/ui/settings/settings.component';
@@ -15,18 +15,19 @@ import { income } from 'src/app/shared/services/test-data';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() income:IncomeBalance;
-  @Input() envs:EnvelopeBudget[];
-  @Input() settings:Settings;
+  @Input() income: IncomeBalance;
+  @Input() envs: EnvelopeBudget[];
+  @Input() settings: Settings;
 
 
   constructor(
-    private backendService:BackendService,
+    private backendService: BackendService,
     public dialog: MatDialog,
-    private auth:AuthService
+    private auth: AuthService
   ) { }
 
   ngOnInit(): void {
+    console.dir(this.settings);
 
   }
 
@@ -35,29 +36,41 @@ export class HeaderComponent implements OnInit {
       height: '30rem',
       width: '20rem',
       data: {
-        income:this.income,
+        income: this.income,
         envelopes: this.envs,
         settings: this.settings
 
       }
     });
 
-    dialogRef.afterClosed().subscribe(settings => {
-      const [inc] = settings;
-     
+    dialogRef.afterClosed().subscribe(changes => {
+      const [inc, settings, envelopes] = changes;
 
-      if(inc) {
-        this.backendService.updateIncomeBalance(inc);
+      console.log("Income is: ");
+      console.dir(inc);
+  
+      console.log("Settings are: ");
+      console.dir(settings);
+
+      console.log("Envelopes are: ");
+      console.dir(envelopes);
+
+      this.settings = settings;
+
+      if (inc) { this.backendService.updateIncomeBalance(inc) };
+      if (this.settings) {
+        this.backendService.updateSettings(this.settings);
       }
+      this.backendService.updateEnvelopes(envelopes);
     });
   }
 
   resetLevels() {
-    if(confirm("Are you sure you want to reset everything?",)) {
-      this.backendService.resetEnvelopeandAllocation(this.envs,this.income);
+    if (confirm("Are you sure you want to reset everything?",)) {
+      this.backendService.resetEnvelopeandAllocation(this.envs, this.income);
     }
   }
 
-  logout() { this.auth.signOut()}
+  logout() { this.auth.signOut() }
 
 }

@@ -35,7 +35,7 @@
                             matInput 
                             name="paycheck" 
                             [value]="env.default" 
-                            (change)="changeEnvelopeValue($event, env)"
+                            (change)="changeEnvelopeValue(env, $event.target.value)"
                         />
                     </mat-form-field> 
                 </div>

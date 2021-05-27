@@ -10,6 +10,7 @@ import { Settings } from '../models/settings.model';
 // import { testData, income } from '../services/test-data';
 import { UserInfo } from '../../shared/models/userInfo.model';
 import { take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,7 @@ export class BackendService {
           .subscribe(settings => {
             //check if settings exists, if they don't then set them up
             if(settings.length > 0) {
-              this._settings = settings[0];
+              this._settings = new Settings(settings[0].payCheck, settings[0].id);
             } else {
                 this._settings = new Settings(0)
                 this.firestore.collection<Settings>(`user/${this.user.uid}/settings/`)
@@ -56,7 +57,7 @@ export class BackendService {
     // return of(testData);
   }
  
-  getSettings() {
+  getSettings(): Observable<Settings[]> {
     return this.firestore.collection<Settings>(`user/${this.user.uid}/settings`).valueChanges();
   }
 
@@ -84,7 +85,7 @@ export class BackendService {
     .set(Object.assign({}, transaction), {merge: true});
   }
 
-  updateEnvelope(envelopes) {
+  updateEnvelopes(envelopes) {
     let envelopeToUpdate;
     envelopeToUpdate = this.firestore.collection<EnvelopeBudget>(`user/${this.user.uid}/envelopes`);
     envelopes.forEach(envelope => {
@@ -94,17 +95,21 @@ export class BackendService {
   }s
 
   updateIncomeBalance(incomeBalance) {
+    console.dir(incomeBalance);
+
     this.firestore.collection<IncomeBalance>(`user/${this.user.uid}/incomeBalance/`)
         .doc(incomeBalance.id)
         .get()
         .pipe(take(1))
         .subscribe( incomeRecord => {
           if(incomeRecord.exists) {
+            console.log("updating");
             this.firestore.collection<IncomeBalance>(`user/${this.user.uid}/incomeBalance/`)
             .doc(incomeBalance.id)
               .update(Object.assign({}, incomeBalance));
           } else {
              //create income
+             console.log("adding");
               this.firestore.collection<IncomeBalance>(`user/${this.user.uid}/incomeBalance/`)
               .doc(incomeBalance.id)
               .set(Object.assign({}, incomeBalance), {merge: true});
@@ -118,6 +123,8 @@ export class BackendService {
   }
 
   updateSettings(settings: Settings) { 
+    console.dir(settings);
+    console.log(`id is ${settings.id}`);
     this.firestore.collection<Settings>(`user/${this.user.uid}/settings/`)
     .doc(settings.id)
       .update(Object.assign({}, settings));

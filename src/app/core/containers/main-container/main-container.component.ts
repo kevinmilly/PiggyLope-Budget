@@ -26,27 +26,27 @@ export class MainContainerComponent implements OnInit {
 
   @Input() user;
 
- 
+
 
   constructor(
-    private budgetService:BudgetService, 
-    public backendService:BackendService,
+    private budgetService: BudgetService,
+    public backendService: BackendService,
     public dialog: MatDialog,
-    private authService:AuthService
-    ) {
+    private authService: AuthService
+  ) {
 
   }
 
 
   ngOnInit() {
-      
+
   }
 
   deleteEnvelope(income, env) {
-    if(confirm("Are you sure you want to delete this envelope?  All of the money allocated to it will go back into the piggy bank")) {
-      const [i,e] = this.budgetService.removeAllAllocation(income,env);
-      console.log({i});
-      console.log({e});
+    if (confirm("Are you sure you want to delete this envelope?  All of the money allocated to it will go back into the piggy bank")) {
+      const [i, e] = this.budgetService.removeAllAllocation(income, env);
+      console.log({ i });
+      console.log({ e });
       this.backendService.deleteEnvelope(e);
       this.backendService.updateIncomeBalance(i);
     }
@@ -59,15 +59,15 @@ export class MainContainerComponent implements OnInit {
       // panelClass: 'dialog-box',
       data: {
         envelope: env,
-        transactions:this.backendService.getTransactions()
+        transactions: this.backendService.getTransactions()
       }
     });
 
     dialogRef.afterClosed().subscribe(adjustment => {
-      if(adjustment) {
+      if (adjustment) {
         const [env, transaction] = adjustment;
         this.backendService.addTransaction(transaction);
-        this.backendService.updateEnvelope([env]);
+        this.backendService.updateEnvelopes([env]);
       }
     });
   }
@@ -79,7 +79,7 @@ export class MainContainerComponent implements OnInit {
       panelClass: 'dialog-box'
     });
     dialogRef.afterClosed().subscribe(envelope => {
-      if(envelope) {
+      if (envelope) {
         this.backendService.addEnvelope(envelope);
       }
     });
@@ -88,19 +88,19 @@ export class MainContainerComponent implements OnInit {
   adjustAllocation(selectedEnv, envs, income) {
     let dialogRef = this.dialog.open(AddAdjustmentComponent, {
       height: '39rem',
-      width: '30rem', 
+      width: '30rem',
       data: {
         selectedEnv,
         envs,
-        income 
+        income
       },
       panelClass: 'dialog-box'
     });
 
     dialogRef.afterClosed().subscribe(transaction => {
-      if(transaction) {
-        const [envsReturned, incBalance] = transaction; 
-        this.backendService.updateEnvelope(envsReturned);
+      if (transaction) {
+        const [envsReturned, incBalance] = transaction;
+        this.backendService.updateEnvelopes(envsReturned);
         this.backendService.updateIncomeBalance(incBalance);
       }
     });

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Settings } from 'src/app/shared/models/settings.model';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { EnvelopeBudget } from 'src/app/shared/models/envelope-budget.model';
 import { IncomeBalance } from 'src/app/shared/models/income-balance.model';
@@ -18,6 +19,7 @@ export class SettingsComponent implements OnInit {
   settingsSub:Subscription;
 
   envelopes:EnvelopeBudget[] = [];
+  settings:Settings;
   envelopeSub:Subscription;
 
   constructor(
@@ -29,21 +31,28 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
     this.envelopes = this.data.envelopes;
     this.income = this.data.income ? this.data.income : new IncomeBalance(null, 0,0);
+    this.settings = this.data.settings;
+    console.dir(this.settings);
     this.settingsForm = new FormGroup({
       income: new FormControl(this.income.unallocated, Validators.min(10)),
-      payCheck: new FormControl(this.data.settings.payCheck, Validators.min(10)),
+      payCheck: new FormControl(this.settings.payCheck, Validators.min(10)),
   
     })
   }
 
-  changeEnvelopeValue(event, env:EnvelopeBudget) { 
-    console.log({env});
-    env.default = event.value;
+  changeEnvelopeValue(env:EnvelopeBudget, value:any) { 
+    env.default = value;
   }
 
   submit() {
+    this.income.unallocated = this.settingsForm.get("income").value;
+    this.settings.payCheck =  this.settingsForm.get("payCheck").value;
     this.dialogRef.close(
-        [new IncomeBalance(this.income.id, this.settingsForm.get("income").value)]
+        [
+          this.income,
+          this.settings,
+          this.envelopes
+        ]
     );
   }
 

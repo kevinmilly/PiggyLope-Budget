@@ -2,30 +2,20 @@
 
 export class Settings {
 
-    private _payCheck:number;
-    private _id:string;
+    payCheck:number;
+    id:string;
 
 
     constructor(amount:number, id?) {
-        this._payCheck = amount;
+        this.payCheck = amount;
         if(id) {
-            this._id = id;
+            this.id = id;
         } else {
-            this._id = id || this.idGenerator();
+            this.id = id || this.idGenerator();
         }
         
     }
 
-    public get payCheck() { 
-        return this._payCheck;
-    }
-
-    public set payCheck(check) {this._payCheck = check;}
-
-
-    public get id() {
-        return this._id;
-     }
 
      idGenerator() {
         var S4 = function() {
