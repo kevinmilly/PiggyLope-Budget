@@ -22,6 +22,8 @@ export class SettingsComponent implements OnInit {
   settings:Settings;
   envelopeSub:Subscription;
 
+  totalDefaults:number;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<SettingsComponent>,
@@ -30,12 +32,13 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.envelopes = this.data.envelopes;
+    this.totalDefaults = this.envelopes.reduce((acc, curr) => acc + curr.default,0)
     this.income = this.data.income ? this.data.income : new IncomeBalance(null, 0,0);
     this.settings = this.data.settings;
     console.dir(this.settings);
     this.settingsForm = new FormGroup({
       income: new FormControl(this.income.unallocated, Validators.min(10)),
-      payCheck: new FormControl(this.settings.payCheck, Validators.min(10)),
+      payCheck: new FormControl(this.settings.payCheck, Validators.min(this.totalDefaults)),
   
     })
   }
