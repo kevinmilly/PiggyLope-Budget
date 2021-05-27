@@ -10,6 +10,7 @@ import { Settings } from '../models/settings.model';
 // import { testData, income } from '../services/test-data';
 import { UserInfo } from '../../shared/models/userInfo.model';
 import { take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class BackendService {
   envelopes$;
   income$;
   transactions$;
-  settings$;
+  _settings;
 
   constructor(private firestore:AngularFirestore, private auth:AuthService) {
     this.auth.user$
@@ -31,7 +32,18 @@ export class BackendService {
       this.envelopes$ = this.getEnvelopes();
       this.income$ = this.getIncomeBalance();
       this.transactions$ = this.getTransactions();
-      this.settings$ = this.getSettings();
+      this.getSettings()
+          .subscribe(settings => {
+            //check if settings exists, if they don't then set them up
+            if(settings.length > 0) {
+              this._settings = new Settings(settings[0].payCheck, settings[0].id);
+            } else {
+                this._settings = new Settings(0)
+                this.firestore.collection<Settings>(`user/${this.user.uid}/settings/`)
+                .doc(this._settings.id)
+                .set(Object.assign({}, this._settings), {merge: true});
+            }
+          }) 
       
 
     })
@@ -45,7 +57,7 @@ export class BackendService {
     // return of(testData);
   }
  
-  getSettings() {
+  getSettings(): Observable<Settings[]> {
     return this.firestore.collection<Settings>(`user/${this.user.uid}/settings`).valueChanges();
   }
 
@@ -63,6 +75,7 @@ export class BackendService {
       .collection<EnvelopeBudget>(`user/${this.user.uid}/envelopes`)
       .doc(envelope.id)
       .set(Object.assign({}, envelope), {merge: true});
+     
   }
 
   addTransaction(transaction) {
@@ -72,26 +85,31 @@ export class BackendService {
     .set(Object.assign({}, transaction), {merge: true});
   }
 
-  updateEnvelope(envelopes) {
+  updateEnvelopes(envelopes) {
     let envelopeToUpdate;
     envelopeToUpdate = this.firestore.collection<EnvelopeBudget>(`user/${this.user.uid}/envelopes`);
     envelopes.forEach(envelope => {
       envelopeToUpdate.doc(envelope.id).update(Object.assign({}, envelope)); 
     });   
+    
   }s
 
   updateIncomeBalance(incomeBalance) {
+    console.dir(incomeBalance);
+
     this.firestore.collection<IncomeBalance>(`user/${this.user.uid}/incomeBalance/`)
         .doc(incomeBalance.id)
         .get()
         .pipe(take(1))
         .subscribe( incomeRecord => {
           if(incomeRecord.exists) {
+            console.log("updating");
             this.firestore.collection<IncomeBalance>(`user/${this.user.uid}/incomeBalance/`)
             .doc(incomeBalance.id)
               .update(Object.assign({}, incomeBalance));
           } else {
              //create income
+             console.log("adding");
               this.firestore.collection<IncomeBalance>(`user/${this.user.uid}/incomeBalance/`)
               .doc(incomeBalance.id)
               .set(Object.assign({}, incomeBalance), {merge: true});
@@ -104,24 +122,12 @@ export class BackendService {
 
   }
 
-  updateSettings(settings: Settings) {
-
+  updateSettings(settings: Settings) { 
+    console.dir(settings);
+    console.log(`id is ${settings.id}`);
     this.firestore.collection<Settings>(`user/${this.user.uid}/settings/`)
     .doc(settings.id)
-    .get()
-    .pipe(take(1))
-    .subscribe( settingsRecord => {
-      if(settingsRecord.exists) {
-        this.firestore.collection<Settings>(`user/${this.user.uid}/settings/`)
-        .doc(settings.id)
-          .update(Object.assign({}, settings));
-      } else {
-            //create settings
-          this.firestore.collection<Settings>(`user/${this.user.uid}/settings/`)
-          .doc(settings.id)
-          .set(Object.assign({}, settings), {merge: true});
-      }
-    })
+      .update(Object.assign({}, settings));
   }
 
   deleteTransaction(transaction) {
@@ -152,7 +158,7 @@ export class BackendService {
   }
 
 
-
+  get settings() { return this._settings}
 
 
 
