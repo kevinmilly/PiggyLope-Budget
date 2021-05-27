@@ -23,23 +23,28 @@
                         <input 
                           type="number" 
                           matInput 
-                          name="pigncome" 
+                          name="pigincome" 
                           formControlName="pigincome" 
-                          />
+                          /> 
                     </mat-form-field>
                 </form>
                 <div class="unallocated__tabbox__allocation-ui__incrementor">
                     <mat-icon 
                       color="accent" 
                       (click)="subtractFromAllocation()"
-                      *ngIf="incomeToReturn.unallocated !== originalIncomeBalance"
+                      *ngIf="incomeToReturn.unallocated !== originalIncomeBalance &&
+                      selectedEnv.balance >= pigincome
+                      "
                     >     
                       add_circle_outline
                      </mat-icon>
                       <mat-icon 
                         color="primary"
                         (click)="addFromAllocation()"
-                        *ngIf="incomeToReturn.unallocated > 0"
+                        *ngIf="incomeToReturn.unallocated > 0 && 
+                              piggyBalanceForm.valid &&
+                              pigincome <= incomeToReturn.unallocated
+                              "
                       >
                         remove_circle_outline
                       </mat-icon>
@@ -64,7 +69,9 @@
                   <mat-icon 
                     color="accent"
                     (click)="addToOtherEnvelope(env)"
-                    *ngIf="selectedEnv.balance !== originalSelectedEnvelopeBalance"
+                    *ngIf="
+                    selectedEnv.balance !== originalSelectedEnvelopeBalance
+                    "
                 
                   >add_circle_outline</mat-icon>
                 </div>

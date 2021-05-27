@@ -33,7 +33,6 @@ export class AddAdjustmentComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.dir(this.data);
   
     this.selectedEnv = this.data.selectedEnv;
     this.currentEnvelopes = this.data.envs.filter(e => e.id !== this.selectedEnv.id);
@@ -126,6 +125,10 @@ export class AddAdjustmentComponent implements OnInit {
 
   checkIfAdded(env:EnvelopeBudget) {
     return this.envsToReturn.findIndex(e => e.id === env.id);
+  }
+
+  get pigincome() {
+    return this.piggyBalanceForm.controls.pigincome.value;
   }
 
 }
