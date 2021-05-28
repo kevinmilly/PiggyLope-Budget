@@ -14,10 +14,16 @@ import { Subscription } from 'rxjs';
   template: `
   <div class="splash-container">
      <div class="splash-container__loggedOut">
-          <div class="splash-container__loggedOut__image">
-             <img src="../assets/piggybank.jpg" />
+          <div 
+            [ngClass.lt-md]="{'splash-container__loggedOut__image-small': true}"
+            [ngClass.gt-sm]="{'splash-container__loggedOut__image-reg': true}"
+            >
+             <img src="../assets/envelope-budget.png" />
           </div>
-          <div class="splash-container__loggedOut__button">
+          <div 
+            [ngClass.lt-md]="{'splash-container__loggedOut__button-small': true}"
+            [ngClass.gt-sm]="{'splash-container__loggedOut__button-reg': true}"
+            >
           <img (click)="login()" src="../assets/sigin_with_google-white.png" />
           </div>
                 
