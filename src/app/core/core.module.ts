@@ -6,14 +6,18 @@ import { MainContainerComponent } from "./containers/main-container/main-contain
 import { CoreRoutingModule } from "./core-routing.module";
 import { AuthService } from "./services/auth.service";
 import { LoginComponent } from "./containers/login/login.component";
+import { IntroComponent } from './intro/intro.component';
+
+import {SlideshowModule} from 'ng-simple-slideshow';
 
 @NgModule({
-    declarations:[MainContainerComponent, LoginComponent],
+    declarations:[MainContainerComponent, LoginComponent, IntroComponent],
     imports:[   
         SharedModule,
         PresentationalModule,
         LayoutModule,
-        CoreRoutingModule
+        CoreRoutingModule,
+        SlideshowModule
     ],
     providers:[AuthService]
 })

@@ -1,10 +1,18 @@
 @import "../../../shared/sass/main.scss";
 
+
+
+
+
 .splash-container {
     display: flex;
     justify-content: center;
     width: auto;
     margin-right: 5rem;
+    
+
+
+
 
 
     &__loggedOut
@@ -44,15 +52,15 @@
                  
                     width: 20rem;
                     margin-top: 32%;
-                    margin-left: 5rem;
+                    margin-left: 6rem;
                 }
             }
 
             &-reg {
      
                 img {   
-                  
-                    margin-left: 1rem;
+                    margin-top: 25%;
+                    margin-left: 5rem;
                     width: 100%;
                     
                 }
@@ -62,13 +70,14 @@
         }
 
        &__button {
+            margin-bottom: 60%;
            
             &-small {
      
                 img {   
-                    width:20rem;
-                    margin-left: 5rem;
-                  
+                    width:75%;
+                    margin-left: 5.5rem;
+          
                     
                     
                 }
@@ -78,7 +87,7 @@
      
                 img {   
                     width: 100%;
-                    margin-left: 2rem;
+                    margin-left: 4rem;
                     
          
                 }

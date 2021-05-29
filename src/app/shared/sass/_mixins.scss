@@ -4,8 +4,8 @@
 }
 
 @mixin envelope-container-spacing {
-  display: flex;
-  justify-content: space-evenly;
+  // display: flex;
+  // justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
@@ -92,7 +92,7 @@
 
 @mixin mid-mat-forms {
   ::ng-deep .mat-form-field {
-    width: 50%;
+    width: 70%;
 
     .mat-input-element {
       color: slategray;

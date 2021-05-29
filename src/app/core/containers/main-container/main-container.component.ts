@@ -74,7 +74,6 @@ export class MainContainerComponent implements OnInit {
 
   addEnvelope() {
     let dialogRef = this.dialog.open(AddEnvelopeComponent, {
-      height: '22rem',
       width: '20rem',
       panelClass: 'dialog-box'
     });

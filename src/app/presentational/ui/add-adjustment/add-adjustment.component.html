@@ -54,10 +54,13 @@
           </div>
         </mat-tab>
         <mat-tab label="From Envelopes">
-          <div class="allocation-card__top-portion__allocated_envs">
+          <div class="allocation-card__top-portion__allocated-envs">
             <ul *ngIf="currentEnvelopes.length > 0; else singleenv">
               <li *ngFor="let env of currentEnvelopes" >
-                <div class="allocated__envs__item"[style.color]="env.balance > 0 ? 'black' : 'gray'">
+                <div 
+                  class="allocation-card__top-portion__allocated-envs__items" 
+                  [style.color]="env.balance > 0 ? 'darkgreen' : 'gray'"
+                >
                   {{env.name}} {{env.balance | currency:'USD'}}      
                   <mat-icon 
                      color="primary"

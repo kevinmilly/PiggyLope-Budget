@@ -1,4 +1,4 @@
-import { Inject } from '@angular/core';
+import { Inject, ViewEncapsulation } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -10,7 +10,8 @@ import { BudgetService } from 'src/app/shared/services/budget.service';
 @Component({
   selector: 'app-add-adjustment',
   templateUrl: './add-adjustment.component.html',
-  styleUrls: ['./add-adjustment.component.scss']
+  styleUrls: ['./add-adjustment.component.scss'],
+
 })
 export class AddAdjustmentComponent implements OnInit {
 

@@ -60,7 +60,7 @@
   
     }
 
-    &__allocated_envs {
+    &__allocated-envs {
       @include center-flex;
       margin: 1rem auto;
       height: auto;
@@ -70,9 +70,15 @@
         list-style-type: none;
       }
 
-      &__item {
-        display: flex;
-        justify-content: space-around;
+      &__items {
+        @include center-flex;
+        margin-left: 1rem;
+        margin-bottom: .5rem;
+        margin-top: 1rem;
+
+        mat-icon {
+          margin-left: 1rem;
+        }
       }
 
       // color: #000000;

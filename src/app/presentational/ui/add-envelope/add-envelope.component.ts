@@ -13,7 +13,7 @@ import { EnvelopeBudget } from 'src/app/shared/models/envelope-budget.model';
 export class AddEnvelopeComponent implements OnInit {
 
   addEnvelopeForm = new FormGroup({
-    envelopeName: new FormControl('', [Validators.required, Validators.maxLength(14)]),
+    envelopeName: new FormControl('', [Validators.required, Validators.maxLength(12)]),
   })
 
 

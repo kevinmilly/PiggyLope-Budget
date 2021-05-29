@@ -3,7 +3,7 @@
 .allocation-card {
   padding-bottom: 5rem;
   background-color: whitesmoke;
-  height: auto;
+  height: 100%;
 
   display: block;
 
@@ -18,13 +18,15 @@
   &__form-group {
     display: block;
     margin-top: 2rem;
+    @include center-flex;
+    font-size: calc(#{$standard-font}* .8);
   }
 }
 
 .mat-card-actions {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
-@include mat-forms;
+@include mid-mat-forms;
