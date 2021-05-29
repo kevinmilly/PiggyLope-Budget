@@ -25,7 +25,7 @@
                 </div>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-button color="primary" (click)="submit()">OK</button>
+              <button *ngIf="addTransactionForm.valid" mat-button color="primary" (click)="submit()">OK</button>
               <button mat-button color="warn" (click)="cancel()">CANCEL</button>
             </mat-card-actions>
 

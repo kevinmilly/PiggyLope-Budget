@@ -24,7 +24,7 @@ import { Subscription } from 'rxjs';
             [ngClass.lt-md]="{'splash-container__loggedOut__button-small': true}"
             [ngClass.gt-sm]="{'splash-container__loggedOut__button-reg': true}"
             >
-          <img (click)="login()" src="../assets/sigin_with_google-white.png" />
+          <img (click)="login()" src="../assets/google-light.png" />
           </div>
                 
     </div>

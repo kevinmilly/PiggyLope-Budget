@@ -45,15 +45,6 @@ export class HeaderComponent implements OnInit {
     dialogRef.afterClosed().subscribe(changes => {
       const [inc, settings, envelopes] = changes;
 
-      console.log("Income is: ");
-      console.dir(inc);
-  
-      console.log("Settings are: ");
-      console.dir(settings);
-
-      console.log("Envelopes are: ");
-      console.dir(envelopes);
-
       this.settings = settings;
 
       if (inc) { this.backendService.updateIncomeBalance(inc) };

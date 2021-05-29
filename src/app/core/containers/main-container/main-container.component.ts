@@ -54,7 +54,7 @@ export class MainContainerComponent implements OnInit {
 
   addTransactionRemoveAllocation(env) {
     let dialogRef = this.dialog.open(AddTransactionComponent, {
-      height: '35rem',
+    
       width: '25rem',
       // panelClass: 'dialog-box',
       data: {
@@ -86,7 +86,7 @@ export class MainContainerComponent implements OnInit {
 
   adjustAllocation(selectedEnv, envs, income) {
     let dialogRef = this.dialog.open(AddAdjustmentComponent, {
-      height: '39rem',
+
       width: '30rem',
       data: {
         selectedEnv,

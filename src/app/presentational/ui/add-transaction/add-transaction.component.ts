@@ -44,7 +44,7 @@ export class AddTransactionComponent implements OnInit {
       new EnvelopeBudget(
         this.chosenEnvelope.id,
         this.chosenEnvelope.balance - this.addTransactionForm.get('amount').value,
-        this.addTransactionForm.get('transactionName').value
+        this.chosenEnvelope.name
      ),
      new ReportTransaction(
       this.addTransactionForm.get('amount').value,

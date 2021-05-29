@@ -35,7 +35,6 @@ export class SettingsComponent implements OnInit {
     this.totalDefaults = this.envelopes.reduce((acc, curr) => acc + curr.default,0)
     this.income = this.data.income ? this.data.income : new IncomeBalance(null, 0,0);
     this.settings = this.data.settings;
-    console.dir(this.settings);
     this.settingsForm = new FormGroup({
       income: new FormControl(this.income.unallocated, Validators.min(10)),
       payCheck: new FormControl(this.settings.payCheck, Validators.min(this.totalDefaults)),
@@ -45,6 +44,10 @@ export class SettingsComponent implements OnInit {
 
   changeEnvelopeValue(env:EnvelopeBudget, value:any) { 
     env.default = value;
+    this.settingsForm.controls.payCheck.setValue(
+      this.settingsForm.controls.payCheck.value - value
+    );
+
   }
 
   submit() {

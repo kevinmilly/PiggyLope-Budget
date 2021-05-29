@@ -24,7 +24,7 @@
         </form>
         <mat-divider></mat-divider>
         <br/>
-        <div class="settings-card__env-form">
+        <div class="settings-card__env-form" *ngIf="envelopes.length > 0">
                 <h3>Envelope Defaults</h3>
                 
                 <div *ngFor="let env of envelopes" class="">
