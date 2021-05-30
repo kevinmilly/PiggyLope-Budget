@@ -18,6 +18,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 
 import {MatMenuModule} from '@angular/material/menu';
 
+import {MatStepperModule} from '@angular/material/stepper';
+
 const modules = [
     MatTableModule,
     MatPaginatorModule,
@@ -33,7 +35,8 @@ const modules = [
     MatInputModule,
     MatSidenavModule,
     FlexLayoutModule,
-    MatMenuModule
+    MatMenuModule,
+    MatStepperModule
 ]
 
 @NgModule({

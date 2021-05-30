@@ -4,5 +4,6 @@ export interface UserInfo {
     email:string;
     photoURL?:string;
     displayName?:string;
+    days?:number;
     
 }

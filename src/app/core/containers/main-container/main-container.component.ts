@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 import { AddAdjustmentComponent } from 'src/app/presentational/ui/add-adjustment/add-adjustment.component';
 import { AddEnvelopeComponent } from 'src/app/presentational/ui/add-envelope/add-envelope.component';
 import { AddTransactionComponent } from 'src/app/presentational/ui/add-transaction/add-transaction.component';
@@ -11,6 +12,7 @@ import { BackendService } from 'src/app/shared/services/backend.service';
 import { EnvelopeBudget } from '../../../shared/models/envelope-budget.model';
 import { IncomeBalance } from '../../../shared/models/income-balance.model';
 import { BudgetService } from '../../../shared/services/budget.service';
+import { IntroComponent } from '../../intro/intro.component';
 import { AuthService } from '../../services/auth.service';
 
 
@@ -32,14 +34,27 @@ export class MainContainerComponent implements OnInit {
     private budgetService: BudgetService,
     public backendService: BackendService,
     public dialog: MatDialog,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute
   ) {
 
   }
 
 
   ngOnInit() {
+    this.route.queryParamMap.pipe(take(1))
+      .subscribe(params => {
+       const firstTime =  (params.get('firstTime') === 'true');
+       console.log(firstTime);
 
+        if(firstTime) {
+          console.log("should be launching intro");
+          let introDialogRef = this.dialog.open(IntroComponent, {
+            width: '30rem',
+            height: '90vh'
+          })
+        }
+      })
   }
 
   deleteEnvelope(income, env) {

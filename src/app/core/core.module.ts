@@ -8,17 +8,17 @@ import { AuthService } from "./services/auth.service";
 import { LoginComponent } from "./containers/login/login.component";
 import { IntroComponent } from './intro/intro.component';
 
-import {SlideshowModule} from 'ng-simple-slideshow';
 
 @NgModule({
-    declarations:[MainContainerComponent, LoginComponent, IntroComponent],
+    declarations:[MainContainerComponent, LoginComponent],
     imports:[   
         SharedModule,
         PresentationalModule,
         LayoutModule,
         CoreRoutingModule,
-        SlideshowModule
+
     ],
+    entryComponents:[],
     providers:[AuthService]
 })
 export class CoreModule {

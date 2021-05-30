@@ -15,7 +15,7 @@ export class AddEnvelopeComponent implements OnInit {
   addEnvelopeForm = new FormGroup({
     envelopeName: new FormControl('', [Validators.required, Validators.maxLength(12)]),
   })
-
+ 
 
   constructor(
     public dialogRef: MatDialogRef<AddEnvelopeComponent>,

@@ -50,14 +50,17 @@ export class LoginComponent implements OnInit {
     this.userSub = this.auth.user$
       .subscribe(user => {
         console.dir(user);
-        if(user) this.router.navigate([`main`]);
+        const firstTime = this.auth.firstTimeUser ? true : false;
+        if(user) this.router.navigate([`main`], { queryParams: {firstTime} });
       })
     
 
    }
 
   login() {
-    this.auth.googleSignin();
+    const result = this.auth.googleSignin();
+
+
   }
 
   logout() {
