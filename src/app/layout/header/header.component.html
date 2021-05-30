@@ -2,6 +2,14 @@
     <div class="header">
         <div class="header__row">
             <div class="column__block" fxHide.sm fxHide.xs>
+              <app-shared-button 
+              [type]="'regular'" 
+              [content]="''" 
+              [size]="'small'"
+              (clicked)="logout()"
+              ><mat-icon>logout</mat-icon>
+            </app-shared-button>
+            <span class="spacer"></span>
                 <app-shared-button 
                     [type]="'regular'" 
                     [content]="''" 
@@ -16,13 +24,6 @@
                     (clicked)="resetLevels()"
                     ><mat-icon>restart_alt</mat-icon>
             </app-shared-button>
-            <app-shared-button 
-                [type]="'regular'" 
-                [content]="''" 
-                [size]="'small'"
-                (clicked)="logout()"
-                ><mat-icon>logout</mat-icon>
-              </app-shared-button>
                 <!-- <app-shared-button [type]="'regular'" [content]="''" [size]="'reg'"><mat-icon>analytics</mat-icon></app-shared-button> -->
         
             </div>

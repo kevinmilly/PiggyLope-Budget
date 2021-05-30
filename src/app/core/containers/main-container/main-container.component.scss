@@ -1,10 +1,13 @@
 @import "../../../shared/sass/main.scss";
 
 .envelope-container {
-  @include envelope-container-spacing;
-  // width: $envelope-container-width;
-  padding: auto;
-  margin-left: 3rem;
+  // @include envelope-container-spacing;
+  margin: auto;
+  width: 30rem;
+  width: $envelope-container-width;
+  margin: 2.5rem;
+  flex-wrap: wrap;
+
 }
 
 .add-envelope-container {

@@ -5,11 +5,9 @@
 .splash-container {
     display: flex;
     justify-content: center;
-    width: auto;
-    margin-right: 5rem;
-    background-image: linear-gradient(to bottom, #ffe1f0, #fce9f7, #fbf1fc, #fbf8fe, #ffffff);
-   
-    
+    width: 100%;
+    margin-right: 4rem;
+ 
 
 
 
@@ -21,8 +19,8 @@
         padding: 1rem;
          display: block;
          @include center;
-         background-image: linear-gradient(to bottom, #ffe1f0, #fce9f7, #fbf1fc, #fbf8fe, #ffffff);
-         width: auto;
+         width: 100%;
+         background-position: center;
 
         &__form {
             @include center;
@@ -53,16 +51,16 @@
                  
                     width: 20rem;
                     margin-top: 32%;
-                    margin-left: 6rem;
+                    margin-left: 4rem;
                 }
             }
 
             &-reg {
      
                 img {   
-                    margin-top: 25%;
-                    margin-left: 5rem;
-                    width: 100%;
+                    // margin-top: 25%;
+                    margin-left: 25rem;
+                    width: 50%;
                     
                 }
             }
@@ -76,7 +74,7 @@
      
                 img {   
                     width:75%;
-                    margin-left: 5.5rem;
+                    margin-left: 4rem;
                     margin-top: 3rem;
           
                     
@@ -87,8 +85,8 @@
             &-reg {
      
                 img {   
-                    width: 100%;
-                    margin-left: 4rem;
+                    margin-left: 30rem;
+                    width: 30%;
                     margin-top: 3rem;
                     
          

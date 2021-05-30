@@ -5,7 +5,9 @@
 
 @mixin envelope-container-spacing {
   // display: flex;
-  // justify-content: space-evenly;
+  // justify-content: center;
+  margin: auto;
+  width: 15rem;
   flex-wrap: wrap;
 }
 
@@ -196,13 +198,16 @@
 }
 
 @mixin envelope($width) {
+
   .card-envelope {
     max-width: $width;
     margin: $card-margin;
-    background-color: $card-background-color;
+    background-color:#eee8dc;
     color: $card-font-color;
     padding: 0;
     font-weight: $card-font-weight;
+
+    border: 0.02 * $width solid darken(#eee8dc, 4%);
 
     &_heading {
       font-size: $card-primary-heading;
@@ -212,6 +217,7 @@
       padding-top: 0.2rem;
       text-align: center;
       text-transform: uppercase;
+      
     }
 
     &-container {

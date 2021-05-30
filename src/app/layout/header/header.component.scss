@@ -8,6 +8,8 @@
   color: black;
   width: auto;
 
+  .spacer { margin: 15rem}
+
   &__row {
     @include main-row-spacing;
 
