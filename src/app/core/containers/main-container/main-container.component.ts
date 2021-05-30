@@ -51,7 +51,8 @@ export class MainContainerComponent implements OnInit {
           console.log("should be launching intro");
           let introDialogRef = this.dialog.open(IntroComponent, {
             width: '30rem',
-            height: '90vh'
+            height: '90vh',
+            panelClass: 'dialog-box'
           })
         }
       })
@@ -71,7 +72,7 @@ export class MainContainerComponent implements OnInit {
     let dialogRef = this.dialog.open(AddTransactionComponent, {
     
       width: '25rem',
-      // panelClass: 'dialog-box',
+      panelClass: 'dialog-box',
       data: {
         envelope: env,
         transactions: this.backendService.getTransactions()

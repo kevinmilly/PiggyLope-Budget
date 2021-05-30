@@ -6,6 +6,7 @@
   width: 30rem;
   width: $envelope-container-width;
   margin: 2.2rem;
+  padding: auto;
   flex-wrap: wrap;
 
 }
@@ -18,7 +19,7 @@
   opacity: 0.2;
   margin-top: 4rem;
   // margin-right: 3rem;
-  margin-left: 2rem;
+  margin-left: 2.2rem;
   .mat-icon {
     font-size: 12rem;
     opacity: 0.2;

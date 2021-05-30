@@ -10,6 +10,10 @@
 
   .spacer { margin: 15rem}
 
+  .menu-buttons {
+    margin-left: 1rem;
+  }
+
   &__row {
     @include main-row-spacing;
 
