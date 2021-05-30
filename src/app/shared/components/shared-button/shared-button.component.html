@@ -4,6 +4,7 @@
        mat-raised-button 
        [ngClass]="{'reg': size==='reg', 'small': size==='small', 'big': size==='big'}"
        (click)="clicked.emit()"
+       [disabled]="disabled"
        >
        <ng-content *ngIf="content === ''; else noContent"></ng-content>
        <ng-template #noContent>{{content}}</ng-template>
@@ -13,6 +14,7 @@
        mat-fab color="primary"
        [ngClass]="{'reg': size==='reg', 'small': size==='small', 'big': size==='big'}"
        (click)="clicked.emit()"
+      [disabled]="disabled"
        >
       <mat-icon>{{content}}</mat-icon>
     </button>
@@ -21,6 +23,7 @@
        mat-icon-button
        [ngClass]="{'reg': size==='reg', 'small': size==='small', 'big': size==='big'}"
        (click)="clicked.emit()"
+      [disabled]="disabled"
     >
         <mat-icon>{{content}}</mat-icon>
       </button>
