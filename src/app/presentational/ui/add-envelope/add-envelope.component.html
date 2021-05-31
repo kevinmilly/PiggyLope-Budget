@@ -7,7 +7,7 @@
             <mat-form-field>
                 <mat-label>Name</mat-label>
                 <input type="text" matInput formControlName="envelopeName">
-                <mat-error *ngIf="!addEnvelopeForm.valid">
+                <mat-error *ngIf="!addEnvelopeForm.valid && (addEnvelopeForm.dirty || addEnvelopeForm.touched)" >
                    Must enter a name and the name must be less than 12 characters.
                 </mat-error>
             </mat-form-field>
