@@ -71,11 +71,11 @@
             <div class="column__income">
                 <div class="column__income__heading">
                     <img src="../../../assets/pig.png" alt="pig icon" [style.width.rem]="1.2">
-                     {{income ? income.unallocated : 0  | currency:'USD'}}
+                     {{(income ? income.unallocated : 0)  | currency:'USD'}}
                 </div>
                 <div class="column__income__heading">
                     <img src="../../../assets/email.png" alt="letter icon" [style.width.rem]="1.2">
-                     {{income ? income.allocated : 0 | currency:'USD'}}
+                     {{(income ? income.allocated : 0) | currency:'USD'}}
                 </div>
                 
             </div>

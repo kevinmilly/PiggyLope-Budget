@@ -11,26 +11,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
-  template: `
-  <div class="splash-container">
-     <div class="splash-container__loggedOut">
-     <div 
-        [ngClass.lt-md]="{'splash-container__loggedOut__image-small': true}"
-        [ngClass.gt-sm]="{'splash-container__loggedOut__image-reg': true}"
-        >
-          <img src="../assets/piggybank.jpg" />
-       </div>
-          <div 
-            [ngClass.lt-md]="{'splash-container__loggedOut__button-small': true}"
-            [ngClass.gt-sm]="{'splash-container__loggedOut__button-reg': true}"
-            >
-          <img (click)="login()" src="../assets/google-light.png" />
-          </div>
-                
-    </div>
-</div>
-
-  `,
+  templateUrl: "./login.component.html",
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {

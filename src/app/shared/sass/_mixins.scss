@@ -210,14 +210,14 @@
     border: 0.02 * $width solid darken(#eee8dc, 4%);
 
     &_heading {
-      font-size: $card-primary-heading;
+      font-size: $card-primary-heading * 1.2;
       clip-path: $clip;
-      height: 3rem;
+      height: 5rem;
       background-color: rgba(221, 196, 166, 0.3);
       padding-top: 0.2rem;
       text-align: center;
       text-transform: uppercase;
-      
+      margin-bottom: 1.5rem;
     }
 
     &-container {
