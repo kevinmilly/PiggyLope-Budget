@@ -1,17 +1,26 @@
-<div class="splash-container">
-    <div class="splash-container__loggedOut">
-    <div 
-       [ngClass.lt-md]="{'splash-container__loggedOut__image-small': true}"
-       [ngClass.gt-sm]="{'splash-container__loggedOut__image-reg': true}"
-       >
-         <img src="../../../../assets/envelope-budget.png" />
+<div class="main-container">
+   <div class="splash-container">
+      <div class="splash-container__loggedOut">
+         <mat-card>
+            <mat-card-header>
+               <mat-card-title>Hero Header</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+               <div 
+               [ngClass.lt-md]="{'splash-container__loggedOut__image-small': true}"
+               [ngClass.gt-sm]="{'splash-container__loggedOut__image-reg': true}"
+               >
+                  <img src="../../../../assets/envelope-budget.png" />
+               </div>
+                  <div 
+                  [ngClass.lt-md]="{'splash-container__loggedOut__button-small': true}"
+                  [ngClass.gt-sm]="{'splash-container__loggedOut__button-reg': true}"
+                  >
+                  <img (click)="login()" src="../assets/google-light.png" />
+                  </div>
+                        
+            </mat-card-content>
+         </mat-card>
       </div>
-         <div 
-           [ngClass.lt-md]="{'splash-container__loggedOut__button-small': true}"
-           [ngClass.gt-sm]="{'splash-container__loggedOut__button-reg': true}"
-           >
-         <img (click)="login()" src="../assets/google-light.png" />
-         </div>
-               
    </div>
 </div>
