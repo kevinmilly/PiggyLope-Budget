@@ -1,27 +1,23 @@
 
 <div class="main-container">
-   <div class="main-container">
-      <video playsinline autoplay muted loop>
-         <source src="../../../../assets/video/counting-money-2.mp4" type="video/mp4">
-       </video>
-   </div>
-   <!-- <div class="main-container__cover"></div> -->
-   <div class="main-container__hero">
-      <h2>Get a hold of your Budget</h2>
-   </div>
+ 
+   <video playsinline autoplay muted loop>
+    <source src="../assets/video/counting-money-2.mp4" type="video/mp4">
+   </video>
+
+   <p class="main-container__hero">
+    Simple Budget Management
+   </p> 
+   <div class="main-container__cover"></div>
    <div class="splash-container">
       <div class="splash-container__loggedOut">
-         <!-- <mat-card>
-            <mat-card-header></mat-card-header>
-            <mat-card-content> -->
+      
                   <div 
                   [ngClass.lt-md]="{'splash-container__loggedOut__button-small': true}"
                   [ngClass.gt-sm]="{'splash-container__loggedOut__button-reg': true}"
                   >
-                  <img (click)="login()" src="../assets/google-light.png" />
+                  <img (click)="login()" src="../assets/google-blue.png" />
                   </div>
-                        
-            <!-- </mat-card-content>
-         </mat-card> -->
+
       </div>
    </div>
