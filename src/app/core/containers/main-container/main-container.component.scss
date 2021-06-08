@@ -2,10 +2,8 @@
 
 .envelope-container {
   // @include envelope-container-spacing;
-  margin: auto;
   width: $envelope-container-width;
-  margin: 3rem;
-  padding: auto;
+  margin: 3.5rem;
   flex-wrap: wrap;
   display: block;
 
