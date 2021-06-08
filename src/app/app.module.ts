@@ -15,6 +15,7 @@ import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
 import {SlideshowModule} from 'ng-simple-slideshow';
 import { IntroComponent } from './core/intro/intro.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
 declarations: [
@@ -31,7 +32,8 @@ declarations: [
     AngularFireAuthModule,
     LayoutModule,
     SharedModule,
-    SlideshowModule
+    SlideshowModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents:[IntroComponent],
   providers: [],
