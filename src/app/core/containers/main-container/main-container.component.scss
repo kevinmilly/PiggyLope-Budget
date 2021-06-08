@@ -1,36 +1,42 @@
 @import "../../../shared/sass/main.scss";
 
-.envelope-container {
-  // @include envelope-container-spacing;
-  width: $envelope-container-width;
-  margin: 3.5rem;
-  flex-wrap: wrap;
-  display: block;
-
-}
-
-.add-envelope-container {
-  float: right;
-}
-
-.envelope-button {
-  opacity: 0.2;
-  margin-top: 5rem;
-  // margin-right: 3rem;
-  margin-left: 2%;
-  .mat-icon {
-    font-size: 14rem;
+.main-container {
+  width: 100;
+  
+  .envelope-container {
+    // @include envelope-container-spacing;
+    width: $envelope-container-width;
+    margin: 2.5rem;
+    flex-wrap: wrap;
+    display: block;
+  
+  }
+  
+  .add-envelope-container {
+    float: right;
+  }
+  
+  .envelope-button {
     opacity: 0.2;
-    color: $card-font-color;
+    margin-top: 5rem;
+    // margin-right: 3rem;
+    margin-left: 2%;
+    .mat-icon {
+      font-size: 14rem;
+      opacity: 0.2;
+      color: $card-font-color;
+    }
+    display: block;
   }
-  display: block;
-}
-.dialog-box {
-  background-color:#fbdabd !important;
-  padding: auto;
-  .mat-dialog-actions {
-    margin-bottom: 0 !important;
-    padding: 2rem 3rem;
-    
+  .dialog-box {
+    background-color:#fbdabd !important;
+    padding: auto;
+    .mat-dialog-actions {
+      margin-bottom: 0 !important;
+      padding: 2rem 3rem;
+      
+    }
   }
 }
+
+

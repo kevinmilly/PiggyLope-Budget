@@ -6,15 +6,15 @@
   height: $header-height;
   background-color: $header-background-color;
   color: black;
-  width: 110vw;
-  overflow-y: hidden;
+  width: 115vw;
+  // overflow-y: hidden;
 
   .menu-buttons {
     margin-left: 1rem;
   }
 
   &__row {
-    width: 100vw;
+    width: 115vw;
     @include main-row-spacing;
 
     .column__block {
@@ -23,7 +23,7 @@
 
     .column__income {
       @include block-columns;
-      margin-right: 7%;
+      margin-right: 15%;
       // mat-icon {
       //   margin-right: .3rem;
       // }

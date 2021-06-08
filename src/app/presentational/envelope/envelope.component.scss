@@ -5,6 +5,7 @@
 
 }
  
+@include envelope(1vw);
 
 .card-actions {
   @include row-float;

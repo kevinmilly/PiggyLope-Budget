@@ -200,7 +200,7 @@
   }
 }
 
-@mixin envelope($width) {
+@mixin envelope($width) { 
 
   .card-envelope {
     max-width: $width;
@@ -252,6 +252,6 @@
 
 @mixin center {
   margin: auto;
-  width: 15em;
+  width: 15rem;
 }
 

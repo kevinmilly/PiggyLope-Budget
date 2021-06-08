@@ -1,6 +1,6 @@
 @import "../../../shared/sass/main.scss";
 
-@include envelope($card-width);
+@include envelope(125vw/2);
 
 .card-actions {
   display: flex;
