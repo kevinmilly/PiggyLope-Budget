@@ -22,6 +22,7 @@
             </mat-form-field>   
 
         </form>
+        <br/> <br/>
         <mat-divider></mat-divider>
         <br/>
         <div class="settings-card__env-form" *ngIf="envelopes.length > 0">
@@ -42,7 +43,7 @@
         </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button color="primary" (click)="submit()">OK</button>
+      <button class="confirm" mat-button color="primary" (click)="submit()">OK</button>
       <button mat-button color="warn" (click)="cancel()">CANCEL</button>
     </mat-card-actions>
   </mat-card> 

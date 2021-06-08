@@ -185,7 +185,7 @@ $mat-primary: (
 $theme-primary: mat-palette($mat-primary, main, lighter, darker);
 
 body {
-  --accent-color: #f3d9bf;
+  --accent-color: #d7cec7;
   --accent-lighter-color: #fbf4ec;
   --accent-darker-color: #edcaa9;
   --text-accent-color: #{$dark-primary-text};
@@ -193,10 +193,10 @@ body {
   --text-accent-darker-color: #{$dark-primary-text};
 }   
 $mat-accent: (
-  main: #f3d9bf,
+  main: #d7cec7,
   lighter: #fbf4ec,
   darker: #edcaa9,
-  200: #f3d9bf, // For slide toggle,
+  200: #d7cec7, // For slide toggle,
   contrast : (
     main: $dark-primary-text,
     lighter: $dark-primary-text,
@@ -206,18 +206,18 @@ $mat-accent: (
 $theme-accent: mat-palette($mat-accent, main, lighter, darker);
 
 body {
-  --warn-color: #ff7fb1;
-  --warn-lighter-color: #ffd9e8;
-  --warn-darker-color: #ff6298;
+  --warn-color: #76323f;
+  --warn-lighter-color: #a55362;
+  --warn-darker-color: #461d24;
   --text-warn-color: #{$dark-primary-text};
   --text-warn-lighter-color: #{$dark-primary-text};
   --text-warn-darker-color: #{$dark-primary-text};
 }   
 $mat-warn: (
-  main: #ff7fb1,
-  lighter: #ffd9e8,
-  darker: #ff6298,
-  200: #ff7fb1, // For slide toggle,
+  main: #76323f,
+  lighter: #a55362,
+  darker: #76323f,
+  200: #76323f, // For slide toggle,
   contrast : (
     main: $dark-primary-text,
     lighter: $dark-primary-text,
@@ -256,5 +256,15 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
   font-family: 'Material Icons Round', 'Material Icons';  
   .mat-badge-content {
     font-family: 'Roboto';
+  }
+}
+
+.dialog-box {
+  background-color:C09F80 !important;
+  padding: auto;
+  .mat-dialog-actions {
+    margin-bottom: 0 !important;
+    padding: 2rem 3rem;
+    
   }
 }

@@ -1,11 +1,16 @@
+//colors
+
+
+
+
 //container
-$envelope-container-width: 60%;
+$envelope-container-width: 99vw;
 
 //envelopes
-$card-width: 14rem;
+$card-width: 55vw;
 $card-margin: 1.5rem;
-$card-background-color: rgb(248, 238, 219);
-$card-font-color: rgb(63, 41, 11);
+$card-background-color: #D7CEC7;
+$card-font-color: #76323F;
 $card-primary-heading: 0.9rem;
 $card-secondary-heading: 0.8rem;
 $card-font-weight: 500;
@@ -13,7 +18,7 @@ $card-font-weight: 500;
 //layout
 
 //header
-$header-background-color: rgb(252, 229, 207);
+$header-background-color: #D7CEC7;
 $header-height: 4rem;
 $header-bottom-margin: 5rem;
 
@@ -25,7 +30,7 @@ $secondary-heading: 1rem;
 $standard-font: 1.5rem;
 
 //headings
-$income-heading-margin: 0.5rem 0 0 0;
+$income-heading-margin: 0.3rem 0 0 0.5rem;
 
 //buttons
 $header-button-margin: 1rem;

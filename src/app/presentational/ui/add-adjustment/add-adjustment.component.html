@@ -30,7 +30,7 @@
                 </form>
                 <div class="unallocated__tabbox__allocation-ui__incrementor">
                     <mat-icon 
-                      color="accent" 
+                      color="primary" 
                       (click)="subtractFromAllocation()"
                       *ngIf="incomeToReturn.unallocated !== originalIncomeBalance &&
                       selectedEnv.balance >= pigincome
@@ -39,7 +39,7 @@
                       add_circle_outline
                      </mat-icon>
                       <mat-icon 
-                        color="primary"
+                        color="warn"
                         (click)="addFromAllocation()"
                         *ngIf="incomeToReturn.unallocated > 0 && 
                               piggyBalanceForm.valid &&
@@ -105,7 +105,7 @@
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button color="primary" (click)="submit()">OK</button>
     <button mat-button color="warn" (click)="cancel()">CANCEL</button>
+    <button mat-button color="primary" (click)="submit()">OK</button>
   </mat-card-actions>
 </mat-card>

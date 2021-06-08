@@ -1,7 +1,7 @@
 <header>
     <div class="header">
         <div class="header__row">
-            <div class="column__block" fxHide.sm fxHide.xs>
+        <div class="column__block" fxHide.sm fxHide.xs>
               <app-shared-button 
               [type]="'regular'" 
               [content]="''" 
@@ -9,24 +9,26 @@
               (clicked)="logout()"
               ><mat-icon>logout</mat-icon>
             </app-shared-button>
-            <span class="spacer"></span>
-                <app-shared-button 
-                    [type]="'regular'" 
-                    [content]="''" 
-                    [size]="'reg'"
-                    (clicked)="launchSettings()"
-                    ><mat-icon>savings</mat-icon>
-                </app-shared-button>
-                <app-shared-button 
-                    [type]="'regular'" 
-                    [content]="''" 
-                    [size]="'reg'"
-                    (clicked)="resetLevels()"
-                    ><mat-icon>restart_alt</mat-icon>
-            </app-shared-button>
+            <!-- <span class="spacer"></span> -->
+            <div>
+               <app-shared-button 
+                  [type]="'regular'" 
+                  [content]="''" 
+                  [size]="'reg'"
+                  (clicked)="launchSettings()"
+                  ><mat-icon>savings</mat-icon>
+              </app-shared-button>
+              <app-shared-button 
+                  [type]="'regular'" 
+                  [content]="''" 
+                  [size]="'reg'"
+                  (clicked)="resetLevels()"
+                  ><mat-icon>restart_alt</mat-icon>
+              </app-shared-button>
+            </div>
                 <!-- <app-shared-button [type]="'regular'" [content]="''" [size]="'reg'"><mat-icon>analytics</mat-icon></app-shared-button> -->
         
-            </div>
+        </div>
             <div class="" fxShow.md fxShow.sm fxHide.lg fxHide.xl> 
                   <button class="menu-buttons" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Additional options">
                     <mat-icon>more_vert</mat-icon>
@@ -70,7 +72,8 @@
             </div>
             <div class="column__income">
                 <div class="column__income__heading">
-                    <img src="../../../assets/pig.png" alt="pig icon" [style.width.rem]="1.2">
+                  <mat-icon>savings</mat-icon>
+                    <!-- <img src="../../../assets/pig.png" alt="pig icon" [style.width.rem]="1.2"> -->
                      {{(income ? income.unallocated : 0)  | currency:'USD'}}
                 </div>
                 <div class="column__income__heading">

@@ -3,11 +3,11 @@
 .envelope-container {
   // @include envelope-container-spacing;
   margin: auto;
-  width: 30rem;
   width: $envelope-container-width;
-  margin: 2.2rem;
+  margin: 3rem;
   padding: auto;
   flex-wrap: wrap;
+  display: block;
 
 }
 
@@ -17,14 +17,15 @@
 
 .envelope-button {
   opacity: 0.2;
-  margin-top: 4rem;
+  margin-top: 5rem;
   // margin-right: 3rem;
-  margin-left: 2.2rem;
+  margin-left: 2%;
   .mat-icon {
-    font-size: 12rem;
+    font-size: 14rem;
     opacity: 0.2;
     color: $card-font-color;
   }
+  display: block;
 }
 .dialog-box {
   background-color:#fbdabd !important;
@@ -32,5 +33,6 @@
   .mat-dialog-actions {
     margin-bottom: 0 !important;
     padding: 2rem 3rem;
+    
   }
 }

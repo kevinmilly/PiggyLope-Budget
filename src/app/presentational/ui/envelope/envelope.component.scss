@@ -3,5 +3,6 @@
 @include envelope($card-width);
 
 .card-actions {
-  @include main-row-spacing;
+  display: flex;
+  justify-content: space-evenly;
 }
