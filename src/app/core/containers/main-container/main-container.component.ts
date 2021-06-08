@@ -42,20 +42,21 @@ export class MainContainerComponent implements OnInit {
 
 
   ngOnInit() {
-    this.route.queryParamMap.pipe(take(1))
-      .subscribe(params => {
-       const firstTime =  (params.get('firstTime') === 'true');
-       console.log(firstTime);
+    // this.route.queryParamMap.pipe(take(1))
+    //   .subscribe(params => {
+    //    const firstTime =  (params.get('firstTime') === 'true');
+    //    console.log(firstTime);
 
-        if(firstTime) {
-          console.log("should be launching intro");
-          let introDialogRef = this.dialog.open(IntroComponent, {
-            width: '30rem',
-            height: '90vh',
-            panelClass: 'dialog-box'
-          })
-        }
-      })
+    //     if(firstTime) {
+    //       console.log("should be launching intro");
+    //       let introDialogRef = this.dialog.open(IntroComponent, {
+    //         width: '99vw',
+        
+    //         // height: '90vh',
+    //         panelClass: 'dialog-box'
+    //       })
+    //     }
+    //   })
   }
 
   deleteEnvelope(income, env) {

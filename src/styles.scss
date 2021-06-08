@@ -261,7 +261,7 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 
 .dialog-box {
   background-color:C09F80 !important;
-  padding: auto;
+  margin-right: 3rem;
   .mat-dialog-actions {
     margin-bottom: 0 !important;
     padding: 2rem 3rem;
