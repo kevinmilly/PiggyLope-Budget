@@ -1,8 +1,26 @@
 <div class="main-container">
     <ng-container *ngIf="backendService.income$ | async as income">
-        <ng-container *ngIf="backendService.envelopes$ | async as envelopes">
-                <app-header [income]="income[0]" [envs]="envelopes" [settings]="backendService.settings"></app-header>
-                <div class="envelope-container" fxLayout="row" fxLayout.xs="column">
+        <ng-container 
+          *ngIf="backendService.envelopes$ | async as envelopes"
+          >
+                <app-header 
+                    [income]="income[0]" 
+                    [envs]="envelopes" 
+                    [settings]="backendService.settings"
+                    [bdcWalkTriggerFor]="add_initial_income"
+                   
+                 ></app-header>
+                 <div
+                 [bdcWalkTriggerFor]="resetDefaults"
+                 >
+
+                 </div>
+                <div 
+                    class="envelope-container" 
+                    fxLayout="row" 
+                    fxLayout.xs="column"
+                    [bdcWalkTriggerFor]="dialogWelcome"
+                >
                     <ng-container *ngFor="let env of envelopes">
                         <app-envelope [envelope]="env">
                             <app-shared-button  
@@ -12,6 +30,7 @@
                                 [size]="'small'"
                                 (clicked)="adjustAllocation(env,envelopes,income[0])"
                                 [disabled]="!income[0] || income[0].unallocated < 1"
+                                [bdcWalkTriggerFor]="allocateMoney"
                             ></app-shared-button>
                            
                                 <app-shared-button 
@@ -21,6 +40,7 @@
                                 [size]="'small'"
                                 (clicked)="addTransactionRemoveAllocation(env)"
                                 [disabled]="!income[0] || income[0].unallocated < 1"
+                                [bdcWalkTriggerFor]="makePurchase"
                             ></app-shared-button>
                             <app-shared-button 
                                 class="delete-envelope" 
@@ -33,7 +53,13 @@
                         </app-envelope>
                     </ng-container>
                     <br/><br/>
-                    <button class="envelope-button" mat-icon-button (click)="addEnvelope()" fxAlign="center">
+                    <button 
+                        class="envelope-button" 
+                        mat-icon-button 
+                        (click)="addEnvelope()" 
+                        fxAlign="center"
+                        [bdcWalkTriggerFor]="add_envelopes"
+                        >
                         <mat-icon>mail_outline</mat-icon>
                     </button>
                 </div>
@@ -41,3 +67,105 @@
     </ng-container>
 </div>
 
+
+  <bdc-walk-popup 
+  #dialogWelcome 
+  name="dialogWelcome" 
+  header="Welcome" 
+  yPosition="below"
+  [showButton]="true"
+  buttonText="Show Me Quick Start" 
+  [onButtonCompleteTask]="{tourNext: 0}"
+  [arrow]="false"
+  >
+  You look new here? <b>Get Started!</b>.
+</bdc-walk-popup>
+
+
+  <bdc-walk-popup 
+    #add_initial_income name="add_initial_income" 
+    name="add_initial_income"
+    header="Add Intial Income" 
+    xPosition="after" 
+    [offsetX]="13"
+    sideNoteText="1/5" 
+    [showButton]="true" 
+    buttonText="Next" 
+    [alignCenter]="true"
+    [mustCompleted]="{dialogWelcome: true}" 
+    [onButtonCompleteTask]="{tourNext: 1}"
+  >
+  Set initial income for allocation.  You can also set defaults for whenever you need to reset for the next time you get paid.
+  <mat-icon>savings</mat-icon>
+  </bdc-walk-popup>
+
+  <bdc-walk-popup 
+      #add_envelopes name="add_envelopes" 
+      name="add_envelopes"
+      header="Add Envelopes" 
+      yPosition="above" 
+      [offsetX]="-50"
+      [offsetY]="-180"
+      sideNoteText="2/5" 
+      [showButton]="true" 
+      buttonText="Next" 
+      [alignCenter]="true"
+      [mustCompleted]="{tourNext: 1}" 
+      [onButtonCompleteTask]="{tourNext: 2}"
+>
+Add envelopes for each budget category.
+</bdc-walk-popup>
+  
+  <bdc-walk-popup 
+    #allocateMoney 
+    [showCloseButton]="true" 
+    name="allocateMoney" 
+    header="Allocate Money to Envelopes" 
+    xPosition="after" 
+    sideNoteText="3/5" 
+    [showButton]="true" 
+    buttonText="Next" 
+    [mustCompleted]="{tourNext: 2}" 
+    [onButtonCompleteTask]="{tourNext: 3}"
+    >
+    Allocate money to envelopes. <mat-icon>request_quote</mat-icon>
+  </bdc-walk-popup>
+
+  <bdc-walk-popup #makePurchase 
+    [showCloseButton]="true" 
+    name="makePurchase" 
+    header="Record Transactions" 
+    [arrow]="false"
+    [alignCenter]="true"
+    [offsetY]="110"
+    [offsetX]="50"
+    sideNoteText="4/5" 
+    [showButton]="true" 
+    [mustCompleted]="{tourNext: 3}" 
+    [onButtonCompleteTask]="{tourNext: 4}"
+    >
+    Make purchases and reflect them for the 
+    envelopes <mat-icon>add_shopping_cart</mat-icon> 
+ 
+  </bdc-walk-popup>
+
+
+
+  <bdc-walk-popup 
+    #resetDefaults 
+    [showCloseButton]="true" 
+    name="resetDefaults" 
+    header="Reset Defaults" 
+    xPosition="after" 
+    [offsetY]="-100"
+    sideNoteText="5/5" 
+    [showButton]="true" 
+    [mustCompleted]="{tourNext: 4}" 
+    [onButtonCompleteTask]="{tourNext: 5}"
+   
+>
+     Reset for each pay cycle, use defaults you set, or choose to reset everything back to zero.
+     <mat-icon>restart_alt</mat-icon> 
+</bdc-walk-popup>
+
+    

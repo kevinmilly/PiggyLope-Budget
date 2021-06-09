@@ -33,7 +33,7 @@ import { MatDialogRef } from '@angular/material/dialog';
  
         <mat-card>
           <p>{{caption[i]}}</p>
-          <img src="{{screen.url}}" > 
+          <img src="{{screen.url}}" >  
         </mat-card>
         <button mat-button matStepperNext>Next</button>
 

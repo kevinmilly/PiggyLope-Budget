@@ -14,6 +14,9 @@ import { IncomeBalance } from '../../../shared/models/income-balance.model';
 import { BudgetService } from '../../../shared/services/budget.service';
 import { IntroComponent } from '../../intro/intro.component';
 import { AuthService } from '../../services/auth.service';
+import { MediaChange, MediaObserver } from '@angular/flex-layout'
+import { Subscription } from 'rxjs';
+import { BdcWalkService } from 'bdc-walkthrough';
 
 
 @Component({
@@ -23,11 +26,16 @@ import { AuthService } from '../../services/auth.service';
 })
 export class MainContainerComponent implements OnInit {
 
+  media$: Observable<MediaChange[]>;
+
   income$: Observable<IncomeBalance[]>;
   transactions$: Observable<ReportTransaction[]>;
 
   @Input() user;
+  mediaSub:Subscription;
 
+  hide:boolean;
+  sizes = ['md','lg','xl'];
 
 
   constructor(
@@ -35,8 +43,11 @@ export class MainContainerComponent implements OnInit {
     public backendService: BackendService,
     public dialog: MatDialog,
     private authService: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    media:MediaObserver,
+    private bdcWalkService: BdcWalkService
   ) {
+      this.media$ = media.asObservable();
 
   }
 
@@ -57,6 +68,17 @@ export class MainContainerComponent implements OnInit {
     //       })
     //     }
     //   })
+    this.mediaSub = this.media$.subscribe(media => {
+      console.log(media[0].mqAlias);
+      if(this.sizes.includes(media[0].mqAlias)) {
+        this.bdcWalkService.setTaskCompleted("dialogWelcome", true);
+        this.bdcWalkService.setTaskCompleted("add_initial_income", true);
+        this.bdcWalkService.setTaskCompleted("add_envelopes", true);
+        this.bdcWalkService.setTaskCompleted("allocateMoney", true);
+        this.bdcWalkService.setTaskCompleted("makePurchase", true);
+        this.bdcWalkService.setTaskCompleted("resetDefaults", true);
+      }
+    });
   }
 
   deleteEnvelope(income, env) {
@@ -122,4 +144,7 @@ export class MainContainerComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    if(this.mediaSub) this.mediaSub.unsubscribe();
+  }
 }

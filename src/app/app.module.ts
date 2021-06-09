@@ -13,7 +13,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
-import {SlideshowModule} from 'ng-simple-slideshow';
 import { IntroComponent } from './core/intro/intro.component';
 
 @NgModule({
@@ -31,7 +30,6 @@ declarations: [
     AngularFireAuthModule,
     LayoutModule,
     SharedModule,
-    SlideshowModule
   ],
   entryComponents:[IntroComponent],
   providers: [],

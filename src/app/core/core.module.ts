@@ -6,7 +6,7 @@ import { MainContainerComponent } from "./containers/main-container/main-contain
 import { CoreRoutingModule } from "./core-routing.module";
 import { AuthService } from "./services/auth.service";
 import { LoginComponent } from "./containers/login/login.component";
-import { IntroComponent } from './intro/intro.component';
+import { BdcWalkModule } from "bdc-walkthrough";
 
 
 @NgModule({
@@ -16,6 +16,7 @@ import { IntroComponent } from './intro/intro.component';
         PresentationalModule,
         LayoutModule,
         CoreRoutingModule,
+        BdcWalkModule
 
     ],
     entryComponents:[],
