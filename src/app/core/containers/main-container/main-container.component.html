@@ -54,7 +54,8 @@
                     </ng-container>
                     <br/><br/>
                     <button 
-                        class="envelope-button" 
+                        [ngClass]="envelopes.length < 1 ? 'envelope-button shake-slow' : 'envelope-button'"
+    
                         mat-icon-button 
                         (click)="addEnvelope()" 
                         fxAlign="center"

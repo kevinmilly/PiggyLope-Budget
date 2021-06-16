@@ -16,7 +16,11 @@
                   [content]="''" 
                   [size]="'reg'"
                   (clicked)="launchSettings()"
-                  ><mat-icon>savings</mat-icon>
+                  
+                  >
+                  <mat-icon>
+                  savings
+                </mat-icon>
               </app-shared-button>
               <app-shared-button 
                   [type]="'regular'" 
@@ -30,7 +34,11 @@
         
         </div>
             <div class="" fxShow.md fxShow.sm fxHide.lg fxHide.xl> 
-                  <button class="menu-buttons" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Additional options">
+                  <button 
+                   [ngClass]="!income ? 'menu-buttons shake-slow' : 'menu-buttons'"
+                    mat-icon-button 
+                    [matMenuTriggerFor]="menu" 
+                    aria-label="Additional options">
                     <mat-icon>more_vert</mat-icon>
                   </button>
                   <mat-menu #menu="matMenu">

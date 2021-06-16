@@ -41,7 +41,6 @@ export class AuthService {
    if(credential.additionalUserInfo.isNewUser) {
      this._firstTimeUser = true;
    }
-   console.log(this.firstTimeUser);
    return [this.updateUserData(credential.user),this.firstTimeUser];
  }
 

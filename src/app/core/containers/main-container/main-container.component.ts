@@ -3,16 +3,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { take, tap } from 'rxjs/operators';
 import { AddAdjustmentComponent } from 'src/app/presentational/ui/add-adjustment/add-adjustment.component';
 import { AddEnvelopeComponent } from 'src/app/presentational/ui/add-envelope/add-envelope.component';
 import { AddTransactionComponent } from 'src/app/presentational/ui/add-transaction/add-transaction.component';
 import { ReportTransaction } from 'src/app/shared/models/report-transaction.model';
 import { BackendService } from 'src/app/shared/services/backend.service';
-import { EnvelopeBudget } from '../../../shared/models/envelope-budget.model';
 import { IncomeBalance } from '../../../shared/models/income-balance.model';
 import { BudgetService } from '../../../shared/services/budget.service';
-import { IntroComponent } from '../../intro/intro.component';
 import { AuthService } from '../../services/auth.service';
 import { MediaChange, MediaObserver } from '@angular/flex-layout'
 import { Subscription } from 'rxjs';
@@ -53,21 +50,7 @@ export class MainContainerComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.route.queryParamMap.pipe(take(1))
-    //   .subscribe(params => {
-    //    const firstTime =  (params.get('firstTime') === 'true');
-    //    console.log(firstTime);
 
-    //     if(firstTime) {
-    //       console.log("should be launching intro");
-    //       let introDialogRef = this.dialog.open(IntroComponent, {
-    //         width: '99vw',
-        
-    //         // height: '90vh',
-    //         panelClass: 'dialog-box'
-    //       })
-    //     }
-    //   })
     this.mediaSub = this.media$.subscribe(media => {
       console.log(media[0].mqAlias);
       if(this.sizes.includes(media[0].mqAlias)) {
@@ -83,11 +66,13 @@ export class MainContainerComponent implements OnInit {
 
   deleteEnvelope(income, env) {
     if (confirm("Are you sure you want to delete this envelope?  All of the money allocated to it will go back into the piggy bank")) {
-      const [i, e] = this.budgetService.removeAllAllocation(income, env);
-      console.log({ i });
-      console.log({ e });
-      this.backendService.deleteEnvelope(e);
-      this.backendService.updateIncomeBalance(i);
+      if(income) {
+        const [i, e] = this.budgetService.removeAllAllocation(income, env); 
+        this.backendService.updateIncomeBalance(i);
+        this.backendService.deleteEnvelope(e);
+      } else {
+          this.backendService.deleteEnvelope(env);
+      }
     }
   }
 

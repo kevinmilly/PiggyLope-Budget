@@ -22,29 +22,15 @@ export class BackendService {
   envelopes$;
   income$;
   transactions$;
-  _settings;
+  _settings = new Settings(0);
 
   constructor(private firestore:AngularFirestore, private auth:AuthService) {
     this.auth.user$
     .subscribe( user => {
       this.user = user;
-
       this.envelopes$ = this.getEnvelopes();
       this.income$ = this.getIncomeBalance();
       this.transactions$ = this.getTransactions();
-      this.getSettings()
-          .subscribe(settings => {
-            //check if settings exists, if they don't then set them up
-            if(settings.length > 0) {
-              this._settings = new Settings(settings[0].payCheck, settings[0].id);
-            } else {
-                this._settings = new Settings(0)
-                this.firestore.collection<Settings>(`user/${this.user.uid}/settings/`)
-                .doc(this._settings.id)
-                .set(Object.assign({}, this._settings), {merge: true});
-            }
-          }) 
-      
 
     })
    }
@@ -92,27 +78,28 @@ export class BackendService {
       envelopeToUpdate.doc(envelope.id).update(Object.assign({}, envelope)); 
     });   
     
-  }s
+  }
+  
 
   updateIncomeBalance(incomeBalance) {
-    console.dir(incomeBalance);
-
     this.firestore.collection<IncomeBalance>(`user/${this.user.uid}/incomeBalance/`)
         .doc(incomeBalance.id)
         .get()
         .pipe(take(1))
         .subscribe( incomeRecord => {
           if(incomeRecord.exists) {
-            console.log("updating");
             this.firestore.collection<IncomeBalance>(`user/${this.user.uid}/incomeBalance/`)
             .doc(incomeBalance.id)
               .update(Object.assign({}, incomeBalance));
-          } else {
+           
+          } else { //initialsetup
              //create income
              console.log("adding");
               this.firestore.collection<IncomeBalance>(`user/${this.user.uid}/incomeBalance/`)
               .doc(incomeBalance.id)
               .set(Object.assign({}, incomeBalance), {merge: true});
+              //create settings
+              this.updateSettings(this._settings);
 
 
           }
